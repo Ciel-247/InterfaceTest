@@ -8,7 +8,7 @@
 @ Python version : 3.x
 '''
 import re
-class create_case_func():
+class deal_result_func():
     def __init__(self,headers,bodys,correlations):
         self.headers = headers
         self.bodys = bodys
@@ -19,10 +19,16 @@ class create_case_func():
         self.p_names = {}
 
     def parse_headers(self):
-        return self.headers
+        if self.headers == "None":
+            return None
+        else:
+            return self.headers
 
     def parse_bodys(self):
-        return self.bodys
+        if self.bodys == "None":
+            return None
+        else:
+            return self.bodys
 
     def parse_correlations(self):
         '''
