@@ -7,14 +7,15 @@ from sqlalchemy import Column, String, create_engine, MetaData,Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+engine = create_engine('sqlite:///E:\\GitHubProject\\InterfaceTest\\data\\AutoTest.db', echo = True)
+metadata = MetaData(engine)
+DBsession = sessionmaker(engine)
 
 def test_execute(caseId):
     pass
 
 def import_case_into_sqlite(PATH,sheet_name):
     #首先连接数据库定义表
-    engine = create_engine('sqlite:///E:\\GitHubProject\\InterfaceTest\\data\\AutoTest.db', echo = True)
-    metadata = MetaData(engine)
     # <editor-fold desc="define test_case_table">
     #采用新定义表的方法
     # test_case_table = Table('test_case', metadata,
@@ -35,7 +36,6 @@ def import_case_into_sqlite(PATH,sheet_name):
     test_case_table = Table('test_case', metadata, autoload=True)
     result_table = Table('result', metadata, autoload = True)
     metadata.create_all()
-    DBsession = sessionmaker(engine)
     session = DBsession()
     #然后从Excel中读取数据，用于放入数据库
     work_book = openpyxl.load_workbook(PATH)
@@ -56,7 +56,7 @@ def import_case_into_sqlite(PATH,sheet_name):
             if_exec = row_cont[10].value,
             create_time = datetime.datetime.now()
         )
-        session.add(test_case_data(**params_dict))#把params_dict放入test_case_data类插入test_case表中
+        session.merge(test_case_data(**params_dict))#把params_dict放入test_case_data类插入test_case表中
         session.commit()
 
 
@@ -67,8 +67,11 @@ def import_case_into_sqlite(PATH,sheet_name):
 def parse_correlation():
     pass
 
-def get_checkPoint():
-    pass
+def get_checkPoint(sheet_name, caseId):
+    session = DBsession()
+    checkPoint = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name,test_case_data.caseId == caseId).one().kwassert
+    print("get_checkPoint is :",checkPoint)
+    return checkPoint
 
 def get_response():
     pass
@@ -110,3 +113,5 @@ class test_case_data(Base):#test_case表定义表结构，用于直接将dict插
 
 if __name__ == "__main__":
     import_case_into_sqlite("../data/test-case_v1116_v2.xlsx","suites-test_zj_ysbqc")
+
+    get_checkPoint("suites-test_zj_ysbqc","YSBQC01_1")
