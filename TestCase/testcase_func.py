@@ -18,7 +18,7 @@ def test_execute(sheet_name,caseId):
     body = requests_info.get_request_body()
     (http_method, uri) = session.query(test_case_data.http_method,test_case_data.uri).filter(test_case_data.caseId == caseId).one()
     print("333888", Headers,body,http_method,uri)
-    response = requests.request(http_method, uri, headers=eval(Headers), data = eval(body))
+    response = requests.request(http_method, uri, headers=eval(Headers), data = body)
     params_dict = dict(
         sheet_name = sheet_name,
         caseId = caseId,
