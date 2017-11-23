@@ -11,10 +11,27 @@ engine = create_engine('sqlite:///E:\\GitHubProject\\InterfaceTest\\data\\AutoTe
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
 
-def test_execute(caseId):
-    session = DBsession()
-    headers = session.query(test_case_data.headers).filter(test_case_data.caseId == caseId).one()[0]
-    print("headers is : ",headers)
+def test_execute(sheet_name,caseId):
+    session = DBsession()#
+    requests_info = request_info(sheet_name, caseId)#用于确认返回经过parsed的列还是未经过parsed的列
+    Headers = requests_info.get_request_headers()
+    body = requests_info.get_request_body()
+    (http_method, uri) = session.query(test_case_data.http_method,test_case_data.uri).filter(test_case_data.caseId == caseId).one()
+    print("333888", Headers,body,http_method,uri)
+    response = requests.request(http_method, uri, headers=eval(Headers), data = eval(body))
+    params_dict = dict(
+        sheet_name = sheet_name,
+        caseId = caseId,
+        request_headers = Headers,
+        request_body = body,
+        response_status_code = response.status_code,
+        response_cookies = str(response.cookies.items()),
+        request_uri = str(response.url),
+        response_text = response.text,
+        exec_time = datetime.datetime.now()
+    )
+    session.add(result_data(**params_dict))
+    session.commit()
 
 def import_case_into_sqlite(PATH,sheet_name):
     #首先连接数据库定义表
@@ -35,8 +52,8 @@ def import_case_into_sqlite(PATH,sheet_name):
     #                         Column("if_exec", String)
     #                         Column("create_time", String))
     # </editor-fold>
-    test_case_table = Table('test_case', metadata, autoload=True)
-    result_table = Table('result', metadata, autoload = True)
+    # test_case_table = Table('test_case', metadata, autoload=True)
+    # result_table = Table('result', metadata, autoload = True)
     metadata.create_all()
     session = DBsession()
     #然后从Excel中读取数据，用于放入数据库
@@ -70,8 +87,10 @@ def import_case_into_sqlite(PATH,sheet_name):
     # print([c.name for c in test_case_table.columns])
     # print([c.name for c in result_table.columns])
 
-def parse_correlation(sheet_name, caseId, response):
+def parse_correlation(sheet_name, caseId):
     session = DBsession()
+    response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    # print("123123123", response)
     correlations = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name, test_case_data.caseId == caseId).one().correlations#根据sheet_name,caseId从数据库查找对应的correlations
     # print("correlations is :",correlations)
     correlations_list = correlations.split("&")#一条用例有多个关联时，通过"&"字符进行分割
@@ -81,7 +100,12 @@ def parse_correlation(sheet_name, caseId, response):
         key = item.split("=")[0]
         value = item.split("=")[1]
         correlations_dict[key] = value
-    # print(correlations_dict)
+    print("!!!!correlations is :", correlations_dict)
+    parsed_correlations_dict = {}
+    for key in correlations_dict:
+        replace_str = "%{" + key + "}"  # 用于正则表达式的匹配，用例中所有需要替换的部分都采取“%{key}”的方式来写的
+        parsed_correlations_dict[key] = ''.join(re.findall(r"%s" % correlations_dict[key], response))
+        print("houhouhou", parsed_correlations_dict)
     #对dict中的每个关联，遍历该sheet_name下所有的headers,body,kwassert,correlations,如果含有%{key}格式的字符串，则替换为该key对应的value，放入对应parsed_xx列（不要直接修改原有列，这样可以从数据库分析用例的整体过程）
     # <editor-fold desc="各列待替换caseId的dict定义">
     parsing_headers_caseId = {}
@@ -174,11 +198,70 @@ class test_case_data(Base):#test_case表定义表结构，用于直接将dict插
         self.if_exec = if_exec
         self.create_time = create_time
 
+class result_data(Base):#result表定义表结构，用于直接将dict插入数据库中
+    #表名
+    __tablename__ = "result"
+    #表结构
+    sheet_name = Column(String)
+    caseId = Column(String, primary_key = True)
+    request_headers = Column(String)
+    request_body = Column(String)
+    response_status_code = Column(String)
+    response_cookies = Column(String)
+    request_uri = Column(String)
+    response_text = Column(String)
+    exec_time = Column(String)
+    def __init__(self, sheet_name, caseId, request_headers, request_body, response_status_code, response_cookies, request_uri, response_text, exec_time):
+        self.sheet_name = sheet_name
+        self.caseId = caseId
+        self.request_headers = request_headers
+        self.request_body = request_body
+        self.response_status_code = response_status_code
+        self.response_cookies = response_cookies
+        self.request_uri = request_uri
+        self.response_text = response_text
+        self.exec_time = exec_time
+
+class request_info(object):
+    def __init__(self, sheet_name, caseId):
+        self.sheet_name = sheet_name
+        self.caseId = caseId
+        self.session = DBsession()
+
+    def get_request_headers(self):
+        (headers, parsed_headers) = self.session.query(test_case_data.headers, test_case_data.parsed_headers).filter(test_case_data.sheet_name == self.sheet_name,test_case_data.caseId == self.caseId).one()
+        if parsed_headers != None:
+            return parsed_headers
+        else:
+            return headers
+
+    def get_request_body(self):
+        (body, parsed_body) = self.session.query(test_case_data.body,test_case_data.parsed_body).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
+        if parsed_body != None:
+            return parsed_body
+        else:
+            return body
+
+    def get_request_kwassert(self):
+        (kwassert, parsed_kwassert) = self.session.query(test_case_data.kwassert, test_case_data.parsed_kwassert).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
+        if parsed_kwassert != None:
+            return parsed_kwassert
+        else:
+            return kwassert
+
+    def get_request_correlations(self):
+        (correlations, parsed_correlations) = self.session.query(test_case_data.correlations, test_case_data.parsed_kwassert).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
+        if parsed_correlations != None:
+            return parsed_correlations
+        else:
+            return correlations
+
+
+
 if __name__ == "__main__":
     import_case_into_sqlite("../data/test-case_v1116_v2.xlsx","suites-test_zj_ysbqc")
-
-    get_checkPoint("suites-test_zj_ysbqc","YSBQC01_1")
-
-    parse_correlation("suites-test_zj_ysbqc","YSBQC01_4",'''"dzswj_tgc": "1234""''')
-
-    test_execute("YSBQC01_2")
+    for i in range (1,8):
+        print(i)
+        caseId = "YSBQC01_" + str(i)
+        test_execute("suites-test_zj_ysbqc", caseId)
+        parse_correlation("suites-test_zj_ysbqc",caseId)
