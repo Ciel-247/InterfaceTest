@@ -7,11 +7,17 @@ from sqlalchemy import Column, String, create_engine, MetaData,Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interfaces-test?charset=utf8', echo = False)
+engine = create_engine('sqlite:///E:\\GitHubProject\\InterfaceTest\\data\\AutoTest.db', echo = False)
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
 
 def test_execute(sheet_name,caseId):
+    '''
+    执行用例，通过sheet_name和caseId从之前导入数据库test_case表的用例内容取出相应的请求内容，发送请求，并记录执行结果到数据库result表
+    :param sheet_name: 要执行用例的sheet_name
+    :param caseId: 要执行用例的caseId
+    :return: None无返回
+    '''
     session = DBsession()#
     re_info = requests_info(sheet_name, caseId)#用于确认返回经过parsed的列还是未经过parsed的列
     Headers = re_info.get_request_headers()
@@ -34,7 +40,13 @@ def test_execute(sheet_name,caseId):
     session.add(result_data(**params_dict))
     session.commit()
 
-def import_case_into_sqlite(PATH,sheet_name):
+def import_case_into_mysql(PATH, sheet_name):
+    '''
+    将PATH路径下的Excel的sheet_name的用例内容经过处理后导入到mysql中，用于后续操作
+    :param PATH: 用例Excel路径
+    :param sheet_name: 待导入用例的sheet_name
+    :return: None
+    '''
     #首先连接数据库定义表
     # <editor-fold desc="define test_case_table">
     #采用新定义表的方法
@@ -89,6 +101,10 @@ def import_case_into_sqlite(PATH,sheet_name):
     # print([c.name for c in result_table.columns])
 
 def parse_correlation(sheet_name, caseId):
+    '''
+    对sheet_name页的caseId用例的关联进行处理，若存在关联，则逐个进行解析，并从该条用例执行的结果中拿到response得到关联变量的值，替换到存在关联变量的用例中，用于后续执行
+    :return: None
+    '''
     session = DBsession()
     response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
     correlations = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name, test_case_data.caseId == caseId).one().correlations#根据sheet_name,caseId从数据库查找对应的correlations
@@ -159,11 +175,19 @@ def parse_correlation(sheet_name, caseId):
             session.commit()
 
 def get_checkPoint(sheet_name, caseId):
+    '''
+    通过sheet_name和caseId获取该条用例的检查点，用于用例的断言
+    :return: 该条用例的检查点
+    '''
     session = DBsession()
     checkPoint = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name,test_case_data.caseId == caseId).one().kwassert
     return checkPoint
 
 def get_response(sheet_name, caseId):
+    '''
+    通过sheet_name和caseId获取该条用例最新一条执行的response的内容，用于用例的断言
+    :return: 该条用例最新执行的response
+    '''
     session = DBsession()
     response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
     return response
@@ -235,6 +259,9 @@ class result_data(Base):#result表定义表结构，用于直接将dict插入数
         self.exec_time = exec_time
 
 class requests_info(object):
+    '''
+    因为每条用例有可能有关联变量也可能没关联变量，对于有关联变量的列在实际请求等时候，需要返回经过处理的值，无关联变量的则直接返回未处理的值
+    '''
     def __init__(self, sheet_name, caseId):
         self.sheet_name = sheet_name
         self.caseId = caseId
@@ -271,7 +298,7 @@ class requests_info(object):
 
 
 if __name__ == "__main__":
-    import_case_into_sqlite("../data/test-case_v1116_v2.xlsx","suites-test_zj_ysbqc")
+    import_case_into_mysql("../data/test-case_v1116_v2.xlsx", "suites-test_zj_ysbqc")
     for i in range (1,9):
         # print(i)
         caseId = "YSBQC01_" + str(i)

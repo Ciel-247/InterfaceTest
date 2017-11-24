@@ -79,5 +79,5 @@ class test_case_zj_ysbqc(unittest.TestCase):
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
 
 if __name__ == "__main__":
-    func.import_case_into_sqlite("../data/test-case_v1116_v2.xlsx", "suites-test_zj_ysbqc")#先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
+    func.import_case_into_mysql("../data/test-case_v1116_v2.xlsx", "suites-test_zj_ysbqc")#先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
     unittest.main()
