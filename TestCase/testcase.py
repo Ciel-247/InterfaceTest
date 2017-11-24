@@ -15,9 +15,69 @@ class test_case_zj_ysbqc(unittest.TestCase):
         """ test case tearDown function """
 
     def test_case_YSBQC01_1(self):
-        func.test_execute("01")#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
-        func.parse_correlation("01")#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
-        self.assertIn("这里放用例里面的检查点","这里函数返回01用例的结果")  # 断言验证检查点
+        caseId = "YSBQC01_1"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_2(self):
+        caseId = "YSBQC01_2"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_3(self):
+        caseId = "YSBQC01_3"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_4(self):
+        caseId = "YSBQC01_4"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_5(self):
+        caseId = "YSBQC01_5"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_6(self):
+        caseId = "YSBQC01_6"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_7(self):
+        caseId = "YSBQC01_7"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+
+    def test_case_YSBQC01_8(self):
+        caseId = "YSBQC01_8"
+        func.test_execute("suites-test_zj_ysbqc", caseId)#执行第一条用例，执行的时候需要顺便把请求和返回写入日志文件中，最好记录在数据库里面
+        func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
+        check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
+        if check_point != "None":
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
 
 if __name__ == "__main__":
-    func.import_case_into_sqlite("PATH","sheet")#先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
+    func.import_case_into_sqlite("../data/test-case_v1116_v2.xlsx", "suites-test_zj_ysbqc")#先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
+    unittest.main()

@@ -16,10 +16,10 @@ def test_execute(sheet_name,caseId):
     re_info = requests_info(sheet_name, caseId)#用于确认返回经过parsed的列还是未经过parsed的列
     Headers = re_info.get_request_headers()
     body = re_info.get_request_body()
-    print("request body is :", body)
+    # print("request body is :", body)
     (http_method, uri) = session.query(test_case_data.http_method,test_case_data.uri).filter(test_case_data.caseId == caseId).one()
     response = requests.request(http_method, uri, headers=eval(Headers), data = body)
-    print("response is :",response.text)
+    # print("response is :",response.text)
     params_dict = dict(
         sheet_name = sheet_name,
         caseId = caseId,
@@ -92,18 +92,18 @@ def parse_correlation(sheet_name, caseId):
     session = DBsession()
     response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
     correlations = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name, test_case_data.caseId == caseId).one().correlations#根据sheet_name,caseId从数据库查找对应的correlations
-    print("now caseId is %s" % caseId)
-    print("correlations is :",correlations)
+    # print("now caseId is %s" % caseId)
+    # print("correlations is :",correlations)
     if correlations == "None":#如果该条用例没有关联则不需要后续处理，直接返回，否则会报错
         return
     correlations_list = correlations.split("&")#一条用例有多个关联时，通过"&"字符进行分割
-    print("list list list correlations_list is :",correlations_list)
+    # print("list list list correlations_list is :",correlations_list)
     # print(correlations_list)
     correlations_dict = {}#定义一个dict用于存放每个关联，关联名作为key，对应正则表达式作为value
     for item in correlations_list:#通过"="分割每个关联，得到关联dict
-        print("asdfasdfasdf:",item)
+        # print("asdfasdfasdf:",item)
         key = item.split("=")[0]
-        print("keykeykey is :",key)
+        # print("keykeykey is :",key)
         value = item.split("=")[1]
         correlations_dict[key] = value
         # print("item,key,value,correlations_dict is : %s,   %s,    %s,    %s" % (item, key, value, correlations_dict))
@@ -113,7 +113,7 @@ def parse_correlation(sheet_name, caseId):
     for key in correlations_dict:
         replace_str[key] = "%{" + key + "}"  # 用于正则表达式的匹配，用例中所有需要替换的部分都采取“%{key}”的方式来写的
         parsed_correlations_dict[key] = ''.join(re.findall(r"%s" % correlations_dict[key], response))
-        print("houhouhou", parsed_correlations_dict)
+        # print("houhouhou", parsed_correlations_dict)
     #对dict中的每个关联，遍历该sheet_name下所有的headers,body,kwassert,correlations,如果含有%{key}格式的字符串，则替换为该key对应的value，放入对应parsed_xx列（不要直接修改原有列，这样可以从数据库分析用例的整体过程）
     # <editor-fold desc="各列待替换caseId的dict定义">
     parsing_headers_caseId = {}
@@ -161,12 +161,12 @@ def parse_correlation(sheet_name, caseId):
 def get_checkPoint(sheet_name, caseId):
     session = DBsession()
     checkPoint = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name,test_case_data.caseId == caseId).one().kwassert
-    print("get_checkPoint is :",checkPoint)
     return checkPoint
 
-def get_response():
-    pass
-
+def get_response(sheet_name, caseId):
+    session = DBsession()
+    response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    return response
 
 Base = declarative_base()
 class test_case_data(Base):#test_case表定义表结构，用于直接将dict插入数据库中
@@ -273,7 +273,7 @@ class requests_info(object):
 if __name__ == "__main__":
     import_case_into_sqlite("../data/test-case_v1116_v2.xlsx","suites-test_zj_ysbqc")
     for i in range (1,9):
-        print(i)
+        # print(i)
         caseId = "YSBQC01_" + str(i)
         test_execute("suites-test_zj_ysbqc", caseId)
         parse_correlation("suites-test_zj_ysbqc",caseId)
