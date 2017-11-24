@@ -7,7 +7,7 @@ from sqlalchemy import Column, String, create_engine, MetaData,Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('sqlite:///E:\\GitHubProject\\InterfaceTest\\data\\AutoTest.db', echo = False)
+engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interfaces-test?charset=utf8', echo = False)
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
 
