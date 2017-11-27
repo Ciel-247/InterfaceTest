@@ -2,7 +2,7 @@
 '''
 用例执行相关功能。
 '''
-import sqlalchemy,requests,re,openpyxl,datetime
+import requests,re,openpyxl,datetime,logging
 from sqlalchemy import Column, String, create_engine, MetaData,Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -10,6 +10,10 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interfaces-test?charset=utf8', echo = False)
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s: %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',)
 
 def test_execute(sheet_name,caseId):
     '''
@@ -22,10 +26,16 @@ def test_execute(sheet_name,caseId):
     re_info = requests_info(sheet_name, caseId)#用于确认返回经过parsed的列还是未经过parsed的列
     Headers = re_info.get_request_headers()
     body = re_info.get_request_body()
-    # print("request body is :", body)
     (http_method, uri) = session.query(test_case_data.http_method,test_case_data.uri).filter(test_case_data.caseId == caseId).one()
     response = requests.request(http_method, uri, headers=eval(Headers), data = body)
-    # print("response is :",response.text)
+    # <editor-fold desc="logging">
+    logging.info("-------------------------------------------------------------------------------------")
+    logging.info("Now execute sheet【%s】,caseId【%s】." % (sheet_name, caseId))
+    logging.info("The request's uri is : \n\"%s\"" % uri)
+    logging.info("The request's Headers is : \n\"%s\"" % Headers)
+    logging.info("The request's body is : \n\"%s\"" % body)
+    logging.info("The request's response is : \n\"%s\"\n\n\n" % response.text)
+    # </editor-fold>
     params_dict = dict(
         sheet_name = sheet_name,
         caseId = caseId,
@@ -48,25 +58,6 @@ def import_case_into_mysql(PATH, sheet_name):
     :return: None
     '''
     #首先连接数据库定义表
-    # <editor-fold desc="define test_case_table">
-    #采用新定义表的方法
-    # test_case_table = Table('test_case', metadata,
-    #                         Column("sheet_name", String)
-    #                         Column("caseId", String, primary_key = True)
-    #                         Column("class_name", String)
-    #                         Column("func_name", String)
-    #                         Column("caseDescription", String)
-    #                         Column("http_method", String)
-    #                         Column("uri", String)
-    #                         Column("headers", String)
-    #                         Column("body", String)
-    #                         Column("kwassert", String)
-    #                         Column("correlations", String)
-    #                         Column("if_exec", String)
-    #                         Column("create_time", String))
-    # </editor-fold>
-    # test_case_table = Table('test_case', metadata, autoload=True)
-    # result_table = Table('result', metadata, autoload = True)
     metadata.create_all()
     session = DBsession()
     #然后从Excel中读取数据，用于放入数据库
@@ -94,6 +85,7 @@ def import_case_into_mysql(PATH, sheet_name):
         )
         session.merge(test_case_data(**params_dict))#把params_dict放入test_case_data类插入test_case表中
         session.commit()
+        logging.debug("import this case :\n%s\n" % params_dict)
 
 
 
