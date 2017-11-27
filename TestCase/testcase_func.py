@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-用例执行相关功能
+用例执行相关功能。
 '''
 import sqlalchemy,requests,re,openpyxl,datetime
 from sqlalchemy import Column, String, create_engine, MetaData,Table
