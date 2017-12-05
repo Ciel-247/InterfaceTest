@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>TestReport_2017-12-01 11:18:31.759869</title>
+    <title>TestReport_2017-12-05 15:22:40.453295</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -190,10 +190,10 @@ function showOutput(id, name) {
 --></script>
 
 <div class='heading'>
-<h1>TestReport_2017-12-01 11:18:31.759869</h1>
-<p class='attribute'><strong>Start Time:</strong> 2017-12-01 11:18:31</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:01.286758</p>
-<p class='attribute'><strong>Status:</strong> Pass 8</p>
+<h1>TestReport_2017-12-05 15:22:40.453295</h1>
+<p class='attribute'><strong>Start Time:</strong> 2017-12-05 15:22:40</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:03.378175</p>
+<p class='attribute'><strong>Status:</strong> Pass 7 Failure 1</p>
 
 <p class='description'>自动化接口测试报告</p>
 </div>
@@ -215,73 +215,118 @@ function showOutput(id, name) {
 <col align='right' />
 </colgroup>
 <tr id='header_row'>
-    <td colspan = '2'>Test Group/Test case</td>//加一个分列显示caseid
+    <td>Test Group/Test case</td>
     <td>Count</td>
     <td>Pass</td>
     <td>Fail</td>
     <td>Error</td>
     <td>View</td>
-    <td>Log</td>//增加log记录
+    <td>Log</td>    <!--增加log记录-->
 </tr>
 
-<tr class='passClass'>
-    <td>caseid</td>    //添加caseid的标题
-    <td>test_case_YSBQC01_1.test_case_zj_ysbqc</td>
+<tr class='failClass'>
+    <td>TestCase.test_case_YSBQC01.test_case_zj_ysbqc</td>
     <td>8</td>
-    <td>8</td>
-    <td>0</td>
+    <td>7</td>
+    <td>1</td>
     <td>0</td>
     <td><a href="javascript:showClassDetail('c1',8)">Detail</a></td>
-    <td>log</td>    //保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】
+    <td>&nbsp;</td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
 </tr>
 
 <tr id='pt1.1' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_1</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.1</p>   
+    </td>
 </tr>
 
 <tr id='pt1.2' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_2</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.2</p>   
+    </td>
 </tr>
 
 <tr id='pt1.3' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_3</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.3</p>   
+    </td>
 </tr>
 
-<tr id='pt1.4' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_case_YSBQC01_4</div></td>
-    <td colspan='5' align='center'>pass</td>
+<tr id='ft1.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_case_YSBQC01_4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        fail</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: Traceback (most recent call last):
+  File "E:\GitHubProject\InterfaceTest\TestCase\test_case_YSBQC01.py", line 47, in test_case_YSBQC01_4
+    self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),"333")
+AssertionError: 'success":true' not found in '333'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+    <td align = 'center'>  <!--增加log列-->
+        <p>ft1.4</p>
+    </td>
 </tr>
 
 <tr id='pt1.5' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_5</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.5</p>   
+    </td>
 </tr>
 
 <tr id='pt1.6' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_6</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.6</p>   
+    </td>
 </tr>
 
 <tr id='pt1.7' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_7</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.7</p>   
+    </td>
 </tr>
 
 <tr id='pt1.8' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_8</div></td>
     <td colspan='5' align='center'>pass</td>
+    <td>    <!--增加log列-->
+        <p>pt1.8</p>   
+    </td>
 </tr>
 
 <tr id='total_row'>
-    <td>Total</td>
+    <td align='center'>Total</td>
     <td>8</td>
-    <td class="text text-success">8</td>
-    <td class="text text-danger">0</td>
+    <td class="text text-success">7</td>
+    <td class="text text-danger">1</td>
     <td class="text text-warning">0</td>
-    <td>&nbsp;</td>
 </tr>
 </table>
 

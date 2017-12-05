@@ -431,43 +431,40 @@ a.popup_link:hover {
 <col align='right' />
 </colgroup>
 <tr id='header_row'>
-    <td colspan = '2'>Test Group/Test case</td>//加一个分列显示caseid
+    <td>Test Group/Test case</td>
     <td>Count</td>
     <td>Pass</td>
     <td>Fail</td>
     <td>Error</td>
     <td>View</td>
-    <td>Log</td>//增加log记录
+    <td>Log</td>    <!--增加log记录-->
 </tr>
 %(test_list)s
 <tr id='total_row'>
-    <td>Total</td>
+    <td align='center'>Total</td>
     <td>%(count)s</td>
     <td class="text text-success">%(Pass)s</td>
     <td class="text text-danger">%(fail)s</td>
     <td class="text text-warning">%(error)s</td>
-    <td>&nbsp;</td>
 </tr>
 </table>
 """ # variables: (test_list, count, Pass, fail, error)
 
     REPORT_CLASS_TMPL = r"""
 <tr class='%(style)s'>
-    <td>caseid</td>    //添加caseid的标题
     <td>%(desc)s</td>
     <td>%(count)s</td>
     <td>%(Pass)s</td>
     <td>%(fail)s</td>
     <td>%(error)s</td>
     <td><a href="javascript:showClassDetail('%(cid)s',%(count)s)">Detail</a></td>
-    <td>log</td>    //保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】
+    <td>&nbsp;</td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
 </tr>
 """ # variables: (style, desc, count, Pass, fail, error, cid)
 
 
     REPORT_TEST_WITH_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
-    <td align = 'center'>%(caseid)s</td>  //%(caseid)s 可以让python转移 html代码中变量替换，caseid在python脚本中定义
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>
 
@@ -487,7 +484,7 @@ a.popup_link:hover {
     <!--css div popup end-->
 
     </td>
-    <td align = 'center'>
+    <td align = 'center'>  <!--增加log列-->
         <p>%(log)s</p>
     </td>
 </tr>
@@ -498,6 +495,9 @@ a.popup_link:hover {
 <tr id='%(tid)s' class='%(Class)s'>
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>%(status)s</td>
+    <td>    <!--增加log列-->
+        <p>%(log)s</p>   
+    </td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
 
@@ -505,14 +505,13 @@ a.popup_link:hover {
     REPORT_TEST_OUTPUT_TMPL = r"""
 %(id)s: %(output)s
 """
+    # variables: (id, output)
+
 # lesq添加内容
-    REPORT_TEST_OUTPUT_CASEID = r"""
-%(case_id)s
-"""
     REPORT_TEST_OUTPUT_LOG = r"""
 %(caselog)s
 """
-    # variables: (id, output)
+
 
 
 
@@ -624,7 +623,7 @@ class _TestResult(TestResult):
 class HTMLTestRunner(Template_mixin):
     """
     """
-    def __init__(self, stream=sys.stdout, verbosity=1, title=None, description=None):
+    def __init__(self, stream=sys.stdout, verbosity=2, title=None, description=None):
         self.stream = stream
         self.verbosity = verbosity
         if title is None:
@@ -795,15 +794,6 @@ class HTMLTestRunner(Template_mixin):
             output = saxutils.escape(uo+ue),
         )
 
-        # <editor-fold desc="lesq添加">
-        caseid = self.REPORT_TEST_OUTPUT_CASEID % dict(
-            case_id = saxutils.escape(uo+ue)
-        )
-        log = self.REPORT_TEST_OUTPUT_LOG % dict(
-            caselog = saxutils.escape(uo+ue)
-        )
-        # </editor-fold>
-
         row = tmpl % dict(
             tid = tid,
             Class = (n == 0 and 'hiddenRow' or 'none'),
@@ -811,8 +801,7 @@ class HTMLTestRunner(Template_mixin):
             desc = desc,
             script = script,
             # <editor-fold desc="lesq添加">
-            caseid = caseid[caseid.find("case")],  #先随便试试
-            log = log[log.find("log")],
+            log = tid,
             # </editor-fold>
             status = self.STATUS[n],
         )

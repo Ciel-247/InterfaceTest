@@ -12,8 +12,11 @@ from util import HTMLTestRunner
 
 
 class load_tests():
+    func.import_case_into_mysql("./data/test-case_v1116_v2.xlsx",
+                           "suites-test_zj_ysbqc")  # 先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
     suite = unittest.defaultTestLoader.discover('',pattern = 'test_*.py')
-    with open('../Report/TestReport.html', 'wb') as files:
+    print("suite's type is :%s" % type(suite))
+    with open('./Report/TestReport.html', 'wb') as files:
         runner = HTMLTestRunner.HTMLTestRunner(
             files,
             title = 'TestReport_{0}'.format(datetime.datetime.now()),
@@ -22,5 +25,4 @@ class load_tests():
         runner.run(suite)
 
 if __name__ == "__main__":
-    func.import_case_into_mysql("../data/test-case_v1116_v2.xlsx", "suites-test_zj_ysbqc")#先调用程序把PATH路径的用例文件的sheet页的用例导出到sqlite中去
     unittest.main()

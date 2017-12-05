@@ -44,7 +44,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
-            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),"333")
 
     def test_case_YSBQC01_5(self):
         caseId = "YSBQC01_5"

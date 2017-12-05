@@ -11,7 +11,7 @@ engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interface
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
 
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.ERROR,
                     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s: %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S',)
 
@@ -22,6 +22,7 @@ def test_execute(sheet_name,caseId):
     :param caseId: 要执行用例的caseId
     :return: None无返回
     '''
+
     session = DBsession()#
     re_info = requests_info(sheet_name, caseId)#用于确认返回经过parsed的列还是未经过parsed的列
     Headers = re_info.get_request_headers()
@@ -85,7 +86,7 @@ def import_case_into_mysql(PATH, sheet_name):
         )
         session.merge(test_case_data(**params_dict))#把params_dict放入test_case_data类插入test_case表中
         session.commit()
-        logging.debug("import this case :\n%s\n" % params_dict)
+        # logging.debug("import this case :\n%s\n" % params_dict)
 
 
 
@@ -99,9 +100,8 @@ def parse_correlation(sheet_name, caseId):
     '''
     session = DBsession()
     response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    # logging.debug("response is :%s" % response)
     correlations = session.query(test_case_data).filter(test_case_data.sheet_name == sheet_name, test_case_data.caseId == caseId).one().correlations#根据sheet_name,caseId从数据库查找对应的correlations
-    # print("now caseId is %s" % caseId)
-    # print("correlations is :",correlations)
     if correlations == "None":#如果该条用例没有关联则不需要后续处理，直接返回，否则会报错
         return
     correlations_list = correlations.split("&")#一条用例有多个关联时，通过"&"字符进行分割
@@ -109,19 +109,17 @@ def parse_correlation(sheet_name, caseId):
     # print(correlations_list)
     correlations_dict = {}#定义一个dict用于存放每个关联，关联名作为key，对应正则表达式作为value
     for item in correlations_list:#通过"="分割每个关联，得到关联dict
-        # print("asdfasdfasdf:",item)
         key = item.split("=")[0]
-        # print("keykeykey is :",key)
         value = item.split("=")[1]
         correlations_dict[key] = value
-        # print("item,key,value,correlations_dict is : %s,   %s,    %s,    %s" % (item, key, value, correlations_dict))
-    # print("!!!!correlations is :", correlations_dict)
+        # logging.debug("item,key,value,correlations_dict is : %s,   %s,    %s,    %s" % (item, key, value, correlations_dict))
+    logging.debug("correlations_dict is :%s" % correlations_dict)
     parsed_correlations_dict = {}
     replace_str = {}
     for key in correlations_dict:
         replace_str[key] = "%{" + key + "}"  # 用于正则表达式的匹配，用例中所有需要替换的部分都采取“%{key}”的方式来写的
         parsed_correlations_dict[key] = ''.join(re.findall(r"%s" % correlations_dict[key], response))
-        # print("houhouhou", parsed_correlations_dict)
+        logging.info("parsed_correlations_dict[%s] is: %s" % (key,parsed_correlations_dict[key]))
     #对dict中的每个关联，遍历该sheet_name下所有的headers,body,kwassert,correlations,如果含有%{key}格式的字符串，则替换为该key对应的value，放入对应parsed_xx列（不要直接修改原有列，这样可以从数据库分析用例的整体过程）
     # <editor-fold desc="各列待替换caseId的dict定义">
     parsing_headers_caseId = {}
@@ -136,11 +134,8 @@ def parse_correlation(sheet_name, caseId):
         parsing_body_caseId[key] = [caseId[0] for caseId in session.query(test_case_data.caseId).filter(test_case_data.body.like("%%{"+key+"}%")).all()]
         parsing_kwassert_caseId[key] = [caseId[0] for caseId in session.query(test_case_data.caseId).filter(test_case_data.kwassert.like("%%{"+key+"}%")).all()]
         parsing_correlations_caseId[key] = [caseId[0] for caseId in session.query(test_case_data.caseId).filter(test_case_data.correlations.like("%%{" + key + "}%")).all()]
-    # print(parsing_headers_caseId,parsing_body_caseId)
-    # print("parsing_headers_caseId is : ", parsing_headers_caseId)
+    # logging.debug("parsing_headers_caseId is %s\nparsing_body_caseId is %s" % (parsing_headers_caseId,parsing_body_caseId))
     for key in correlations_dict:#对关联dict中的每一个关键字都要处理
-        # replace_str = "%{" + key + "}"#用于正则表达式的匹配，用例中所有需要替换的部分都采取“%{key}”的方式来写的
-        # newpat = ''.join(re.findall(r"%s" % correlations_dict[key] ,response))#用于替换的新词，从response中通过correlations_dict[key]的正则表达式来取出
         for value in parsing_headers_caseId[key]:#对所有待替换headers的caseId进行处理
             re_info = requests_info(sheet_name, value)
             before = re_info.get_request_headers()
@@ -260,6 +255,9 @@ class requests_info(object):
         self.session = DBsession()
 
     def get_request_headers(self):
+        if self.session.query(test_case_data.caseId == self.caseId).count() == 0 :
+            logging.debug("%s count is : 0" % self.caseId)
+            return None
         (headers, parsed_headers) = self.session.query(test_case_data.headers, test_case_data.parsed_headers).filter(test_case_data.sheet_name == self.sheet_name,test_case_data.caseId == self.caseId).one()
         if parsed_headers != None:
             return parsed_headers
@@ -267,6 +265,8 @@ class requests_info(object):
             return headers
 
     def get_request_body(self):
+        if self.session.query(test_case_data.caseId == self.caseId).count() == 0 :
+            return None
         (body, parsed_body) = self.session.query(test_case_data.body,test_case_data.parsed_body).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
         if parsed_body != None:
             return parsed_body
@@ -274,6 +274,8 @@ class requests_info(object):
             return body
 
     def get_request_kwassert(self):
+        if self.session.query(test_case_data.caseId == self.caseId).count() == 0 :
+            return None
         (kwassert, parsed_kwassert) = self.session.query(test_case_data.kwassert, test_case_data.parsed_kwassert).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
         if parsed_kwassert != None:
             return parsed_kwassert
@@ -281,6 +283,8 @@ class requests_info(object):
             return kwassert
 
     def get_request_correlations(self):
+        if self.session.query(test_case_data.caseId == self.caseId).count() == 0 :
+            return None
         (correlations, parsed_correlations) = self.session.query(test_case_data.correlations, test_case_data.parsed_kwassert).filter(test_case_data.sheet_name == self.sheet_name, test_case_data.caseId == self.caseId).one()
         if parsed_correlations != None:
             return parsed_correlations
