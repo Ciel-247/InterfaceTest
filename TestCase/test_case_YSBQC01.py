@@ -4,8 +4,15 @@
 用例执行文件
 '''
 import unittest
-
+import logging
 from TestCase import testcase_func as func
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s: %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',)
+console = logging.StreamHandler()
+console.setLevel(logging.DEBUG)
+logging.getLogger('').addHandler(console)
 
 class test_case_zj_ysbqc(unittest.TestCase):
     def setUp(self):
@@ -21,6 +28,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        logging.info("this is a test")
 
     def test_case_YSBQC01_2(self):
         caseId = "YSBQC01_2"

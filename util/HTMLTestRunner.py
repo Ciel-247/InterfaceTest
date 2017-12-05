@@ -507,13 +507,6 @@ a.popup_link:hover {
 """
     # variables: (id, output)
 
-# lesq添加内容
-    REPORT_TEST_OUTPUT_LOG = r"""
-%(caselog)s
-"""
-
-
-
 
     # ------------------------------------------------------------------------
     # ENDING
@@ -793,16 +786,18 @@ class HTMLTestRunner(Template_mixin):
             id = tid,
             output = saxutils.escape(uo+ue),
         )
-
+        caselog = uo + ue
+        print("caselog is %s" % caselog)
+        log = caselog[caselog.find("'succe"):caselog.find("33'")]
         row = tmpl % dict(
             tid = tid,
             Class = (n == 0 and 'hiddenRow' or 'none'),
             style = n == 2 and 'errorCase' or (n == 1 and 'failCase' or 'none'),
             desc = desc,
             script = script,
-            # <editor-fold desc="lesq添加">
-            log = tid,
-            # </editor-fold>
+            # # <editor-fold desc="lesq添加">
+            log = log,
+            # # </editor-fold>
             status = self.STATUS[n],
         )
         rows.append(row)
