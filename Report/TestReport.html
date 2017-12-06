@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>TestReport_2017-12-05 18:13:13.004896</title>
+    <title>TestReport_2017-12-06 10:50:13.635055</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -173,6 +173,16 @@ function html_escape(s) {
     return s;
 }
 
+function displayDiv()
+{
+    var divContainer=document.getElementById('logdiv');
+    if(divContainer.style.display==""||divContainer.style.display=="block"){
+        divContainer.style.display="none";
+    }else{
+        divContainer.style.display="block";
+    }
+}
+
 /* obsoleted by detail in <div>
 function showOutput(id, name) {
     var w = window.open("", //url
@@ -190,9 +200,9 @@ function showOutput(id, name) {
 --></script>
 
 <div class='heading'>
-<h1>TestReport_2017-12-05 18:13:13.004896</h1>
-<p class='attribute'><strong>Start Time:</strong> 2017-12-05 18:13:13</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:06.901380</p>
+<h1>TestReport_2017-12-06 10:50:13.635055</h1>
+<p class='attribute'><strong>Start Time:</strong> 2017-12-06 10:50:13</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:02.004500</p>
 <p class='attribute'><strong>Status:</strong> Pass 7 Failure 1</p>
 
 <p class='description'>自动化接口测试报告</p>
@@ -231,14 +241,37 @@ function showOutput(id, name) {
     <td>1</td>
     <td>0</td>
     <td><a href="javascript:showClassDetail('c1',8)">Detail</a></td>
-    <td>&nbsp;</td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
+    <td align="center">
+        <input type="button" value="log" onclick="displayDiv()">
+    </td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
 </tr>
 
 <tr id='pt1.1' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_case_YSBQC01_1</div></td>
-    <td colspan='5' align='center'>pass</td>
-    <td>    <!--增加log列-->
-        <p></p>   
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: response is :{"success": true,"message": "rsa公钥获取成功","data": {"pk": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB"}} $end
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+    <td align = 'left'>  <!--增加log列-->
+        <!--input type='button' value="log" onclick='displayDiv()'-->
+        <div id='logdiv' style="width:400px; display:none; inline;word-break: break-all; word-wrap:break-word; ">response is :{&quot;success&quot;: true,&quot;message&quot;: &quot;rsa公钥获取成功&quot;,&quot;data&quot;: {&quot;pk&quot;: &quot;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB&quot;}} </div>
     </td>
 </tr>
 
@@ -246,7 +279,6 @@ function showOutput(id, name) {
     <td class='none'><div class='testcase'>test_case_YSBQC01_2</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 
@@ -254,7 +286,6 @@ function showOutput(id, name) {
     <td class='none'><div class='testcase'>test_case_YSBQC01_3</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 
@@ -284,8 +315,9 @@ AssertionError: 'success":true' not found in '333'
     <!--css div popup end-->
 
     </td>
-    <td align = 'center'>  <!--增加log列-->
-        <p>'success":true' not found in '3</p>
+    <td align = 'left'>  <!--增加log列-->
+        <!--input type='button' value="log" onclick='displayDiv()'-->
+        <div id='logdiv' style="width:400px; display:none; inline;word-break: break-all; word-wrap:break-word; "></div>
     </td>
 </tr>
 
@@ -293,7 +325,6 @@ AssertionError: 'success":true' not found in '333'
     <td class='none'><div class='testcase'>test_case_YSBQC01_5</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 
@@ -301,7 +332,6 @@ AssertionError: 'success":true' not found in '333'
     <td class='none'><div class='testcase'>test_case_YSBQC01_6</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 
@@ -309,7 +339,6 @@ AssertionError: 'success":true' not found in '333'
     <td class='none'><div class='testcase'>test_case_YSBQC01_7</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 
@@ -317,7 +346,6 @@ AssertionError: 'success":true' not found in '333'
     <td class='none'><div class='testcase'>test_case_YSBQC01_8</div></td>
     <td colspan='5' align='center'>pass</td>
     <td>    <!--增加log列-->
-        <p></p>   
     </td>
 </tr>
 

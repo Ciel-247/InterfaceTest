@@ -28,7 +28,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
-        logging.info("this is a test")
+        print("response is :%s" % func.get_response("suites-test_zj_ysbqc", caseId),"$end")
 
     def test_case_YSBQC01_2(self):
         caseId = "YSBQC01_2"

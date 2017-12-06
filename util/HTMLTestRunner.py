@@ -274,6 +274,16 @@ function html_escape(s) {
     return s;
 }
 
+function displayDiv()
+{
+    var divContainer=document.getElementById('logdiv');
+    if(divContainer.style.display==""||divContainer.style.display=="block"){
+        divContainer.style.display="none";
+    }else{
+        divContainer.style.display="block";
+    }
+}
+
 /* obsoleted by detail in <div>
 function showOutput(id, name) {
     var w = window.open("", //url
@@ -458,7 +468,9 @@ a.popup_link:hover {
     <td>%(fail)s</td>
     <td>%(error)s</td>
     <td><a href="javascript:showClassDetail('%(cid)s',%(count)s)">Detail</a></td>
-    <td>&nbsp;</td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
+    <td align="center">
+        <input type="button" value="log" onclick="displayDiv()">
+    </td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
 </tr>
 """ # variables: (style, desc, count, Pass, fail, error, cid)
 
@@ -484,8 +496,9 @@ a.popup_link:hover {
     <!--css div popup end-->
 
     </td>
-    <td align = 'center'>  <!--增加log列-->
-        <p>%(log)s</p>
+    <td align = 'left'>  <!--增加log列-->
+        <!--input type='button' value="log" onclick='displayDiv()'-->
+        <div id='logdiv' style="width:400px; display:none; inline;word-break: break-all; word-wrap:break-word; ">%(log)s</div>
     </td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
@@ -496,7 +509,6 @@ a.popup_link:hover {
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>%(status)s</td>
     <td>    <!--增加log列-->
-        <p>%(log)s</p>   
     </td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
@@ -786,9 +798,10 @@ class HTMLTestRunner(Template_mixin):
             id = tid,
             output = saxutils.escape(uo+ue),
         )
-        caselog = uo + ue
+        caselog = saxutils.escape(uo+ue)
         print("caselog is %s" % caselog)
-        log = caselog[caselog.find("'succe"):caselog.find("33'")]
+        log = caselog[caselog.find("response is :"):caselog.find("$end")].replace('"','&quot;')
+        print("log is :%s" % log)
         row = tmpl % dict(
             tid = tid,
             Class = (n == 0 and 'hiddenRow' or 'none'),
