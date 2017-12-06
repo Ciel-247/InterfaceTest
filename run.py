@@ -8,7 +8,7 @@ import unittest
 from unittest import TestSuite
 
 from TestCase import testcase_func as func
-from util import HTMLTestRunner
+from util import HTMLTestRunner,BSTestRunner
 
 
 class load_tests():
@@ -17,7 +17,7 @@ class load_tests():
     suite = unittest.defaultTestLoader.discover('',pattern = 'test_*.py')
     print("suite's type is :%s" % type(suite))
     with open('./Report/TestReport.html', 'wb') as files:
-        runner = HTMLTestRunner.HTMLTestRunner(
+        runner = BSTestRunner.BSTestRunner(
             files,
             title = 'TestReport_{0}'.format(datetime.datetime.now()),
             description = u'自动化接口测试报告'

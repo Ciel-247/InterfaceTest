@@ -28,7 +28,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
-        print("response is :%s" % func.get_response("suites-test_zj_ysbqc", caseId),"$end")
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_2(self):
         caseId = "YSBQC01_2"
@@ -37,6 +37,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_3(self):
         caseId = "YSBQC01_3"
@@ -45,6 +46,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_4(self):
         caseId = "YSBQC01_4"
@@ -52,7 +54,8 @@ class test_case_zj_ysbqc(unittest.TestCase):
         func.parse_correlation("suites-test_zj_ysbqc", caseId)#解析并更新第一条用例的关联在数据库里面遍历所有可能出现关联的地方
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
-            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),"333")
+            self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_5(self):
         caseId = "YSBQC01_5"
@@ -61,6 +64,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_6(self):
         caseId = "YSBQC01_6"
@@ -69,6 +73,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_7(self):
         caseId = "YSBQC01_7"
@@ -77,6 +82,7 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))
 
     def test_case_YSBQC01_8(self):
         caseId = "YSBQC01_8"
@@ -85,3 +91,4 @@ class test_case_zj_ysbqc(unittest.TestCase):
         check_point = func.get_checkPoint("suites-test_zj_ysbqc", caseId)
         if check_point != "None":
             self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),func.get_response("suites-test_zj_ysbqc", caseId))
+        print(func.get_report_log("suites-test_zj_ysbqc", caseId))

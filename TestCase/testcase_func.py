@@ -7,7 +7,7 @@ from sqlalchemy import Column, String, create_engine, MetaData,Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interfaces-test?charset=utf8', echo = False)
+engine = create_engine('mysql+pymysql://root:root@192.168.149.134:3306/interfaces-test?charset=utf8', echo = False, pool_size=100)
 metadata = MetaData(engine)
 DBsession = sessionmaker(engine)
 
@@ -178,6 +178,22 @@ def get_response(sheet_name, caseId):
     session = DBsession()
     response = session.query(result_data.response_text).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
     return response
+
+def get_report_log(sheet_name, caseId):
+    '''
+    通过sheet_name和caseId获取该条用例最新的result结果，用于报告中日志的展示
+    :return: 组织好的用于报告展示的log字符串
+    '''
+    session = DBsession()
+    response = get_response(sheet_name, caseId)
+    header = session.query(result_data.request_headers).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    body = session.query(result_data.request_body).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    uri = session.query(result_data.request_uri).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    response_status = session.query(result_data.response_status_code).filter(result_data.sheet_name == sheet_name, result_data.caseId == caseId).order_by(result_data.exec_time.desc()).all()[0][0]
+    report_log = "【Request】\n\t【uri】%s\n\t【header】%s\n\t【body】%s\n【Response】\n\t【status】%s\n\t【body】%s $end" % (uri, header, body, response_status, response)
+    # print("report_log is %s" % report_log)
+    return report_log
+
 
 Base = declarative_base()
 class test_case_data(Base):#test_case表定义表结构，用于直接将dict插入数据库中
