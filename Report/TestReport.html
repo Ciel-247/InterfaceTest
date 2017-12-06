@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>TestReport_2017-12-06 14:31:11.217128</title>
+    <title>TestReport_2017-12-06 15:33:12.411628</title>
     <meta name="generator" content="BSTestRunner 0.8.4"/>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
     
@@ -159,10 +159,10 @@ function showOutput(id, name) {
 
 <div class="container">
     <div class='heading'>
-<h1>TestReport_2017-12-06 14:31:11.217128</h1>
-<p><strong>Start Time:</strong> 2017-12-06 14:31:11</p>
-<p><strong>Duration:</strong> 0:00:05.217500</p>
-<p><strong>Status:</strong> <span class="text text-success">Pass <strong>8</strong></span></p>
+<h1>TestReport_2017-12-06 15:33:12.411628</h1>
+<p><strong>Start Time:</strong> 2017-12-06 15:33:12</p>
+<p><strong>Duration:</strong> 0:00:03.565500</p>
+<p><strong>Status:</strong> <span class="text text-success">Pass <strong>7</strong></span> <span class="text text-danger">Failure <strong>1</strong></span></p>
 
 <p class='description'>自动化接口测试报告</p>
 </div>
@@ -188,11 +188,11 @@ function showOutput(id, name) {
     </thead>
     <tbody>
         
-<tr class='text text-success'>
+<tr class='text text-danger'>
     <td>TestCase.test_case_YSBQC01.test_case_zj_ysbqc</td>
     <td>8</td>
-    <td>8</td>
-    <td>0</td>
+    <td>7</td>
+    <td>1</td>
     <td>0</td>
     <td></td>     <!--保持列数统一，加入空白列【如果要加日志这里是不是要改成日志的变量？】-->
     <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c1',8)">Detail</a></td>
@@ -200,36 +200,13 @@ function showOutput(id, name) {
 
 <tr id='pt1.1' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_1</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
-        pass</a>
-
-    <div id='div_pt1.1' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.1: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/base/getRsaPublicKey.do
-	【header】None
-	【body】None
-【Response】
-	【status】200
-	【body】{"success": true,"message": "rsa公钥获取成功","data": {"pk": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB"}} $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.1')">
-        <div id="logdiv_pt1.1" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.1" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/base/getRsaPublicKey.do
 	【header】None
@@ -243,168 +220,76 @@ pt1.1: 【Request】
 
 <tr id='pt1.2' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_2</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
-        pass</a>
-
-    <div id='div_pt1.2' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.2: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/rsa/encode.do
-	【header】{"Content-Type":"application/json"}
-	【body】{"data":"330100194704074447","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB"}
-【Response】
-	【status】200
-	【body】682012C8BA17D6048BEE1BED82AA8EEB0FA2D704D48A12DB0B4389D65A716301DD8966A7B7CC6363B334D906A10B0575AD7DCBB7656B8B28AFA0C29DCE6B8984EEFC2EFF1A03D283CC704B43FADE9B6FE278D8A2EA7B7DD65FFF9087C7D16173B19DC89CF05ECFD14F48077A4232A7A13FCDE75E30CAC00CABE434543F1124DE $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.2')">
-        <div id="logdiv_pt1.2" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.2" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/rsa/encode.do
 	【header】{&quot;Content-Type&quot;:&quot;application/json&quot;}
 	【body】{&quot;data&quot;:&quot;330100194704074447&quot;,&quot;publicKey&quot;:&quot;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB&quot;}
 【Response】
 	【status】200
-	【body】682012C8BA17D6048BEE1BED82AA8EEB0FA2D704D48A12DB0B4389D65A716301DD8966A7B7CC6363B334D906A10B0575AD7DCBB7656B8B28AFA0C29DCE6B8984EEFC2EFF1A03D283CC704B43FADE9B6FE278D8A2EA7B7DD65FFF9087C7D16173B19DC89CF05ECFD14F48077A4232A7A13FCDE75E30CAC00CABE434543F1124DE </pre>
+	【body】AE93CD397BF23F9425ACFEE2A89889645AE7159F64163C76E4D71A0FFD8233FA4E107AA39C7BFE4C6FAFA9954B0A13DFF4729B534B46916E4AB979648D019AE4ACDFBC154053A4AAF70A1555AD67D2A5C160D82409031F267A4FD5446CC9DDC32CD2514E8AE1DA66331A3695CF5F49C6D35D56DBEE97ECA001A9C42F88FEE751 </pre>
         </div>
     </td>
 </tr>
 
 <tr id='pt1.3' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_3</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
-        pass</a>
-
-    <div id='div_pt1.3' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.3: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/rsa/encode.do
-	【header】{"Content-Type":"application/json"}
-	【body】{"data":"wfj@dain#***","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB"}
-【Response】
-	【status】200
-	【body】B06A6BD4DDF1472EE78137FACEF66C3E54B8206825060612FE1AA234665BBFA540F7B41CE7968BD4F7D65B7F1F463D67FA85A3DFADB7BC83FE4323436D4FE24A5144092B56AEA63E27277F7BC24166EE258F58B75AAC2C5A10BA9B04C8C435E64B5315E4E33301F0754DDFF4EC83A0E7FAA74165415518B755C366E53DE4A9E9 $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.3')">
-        <div id="logdiv_pt1.3" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.3" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/rsa/encode.do
 	【header】{&quot;Content-Type&quot;:&quot;application/json&quot;}
 	【body】{&quot;data&quot;:&quot;wfj@dain#***&quot;,&quot;publicKey&quot;:&quot;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNA29jbDJp3R5oMzpVa8RBIVzSS8GTZ1w+kAL6Ddlf8kpEg+NGD1xAKpnHU/3BaLtp+YzW5ZEywyjyItJ9lRS0kC1e4eP8Suv1fLDjAAASfGVnTJkMlbKM6k3hHVCQ17rUH9zvcXtQJr8VjaozNUZWmFwF4jdYG6vFCXrdoK//FwIDAQAB&quot;}
 【Response】
 	【status】200
-	【body】B06A6BD4DDF1472EE78137FACEF66C3E54B8206825060612FE1AA234665BBFA540F7B41CE7968BD4F7D65B7F1F463D67FA85A3DFADB7BC83FE4323436D4FE24A5144092B56AEA63E27277F7BC24166EE258F58B75AAC2C5A10BA9B04C8C435E64B5315E4E33301F0754DDFF4EC83A0E7FAA74165415518B755C366E53DE4A9E9 </pre>
+	【body】66B50C9D4666C6A12182E56E3EF5F7D2EAE03DF73264610CEE47FADFA889C2048D4C21B5A7441B1C0D8B1010B027B7831F7EBF63E7CF0889066CE2ADD1D58DD04A9550B202D27F81F1957C49933405A63011873A5AB12D180874BB2DD08A10AB0810E8BA1288EBB63F0CC2011A0D4262EF43D5847499176110012C146CD3CDDE </pre>
         </div>
     </td>
 </tr>
 
 <tr id='pt1.4' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_4</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
-        pass</a>
-
-    <div id='div_pt1.4' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.4: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/login
-	【header】{"Content-Type":"application/x-www-form-urlencoded"}
-	【body】username=682012C8BA17D6048BEE1BED82AA8EEB0FA2D704D48A12DB0B4389D65A716301DD8966A7B7CC6363B334D906A10B0575AD7DCBB7656B8B28AFA0C29DCE6B8984EEFC2EFF1A03D283CC704B43FADE9B6FE278D8A2EA7B7DD65FFF9087C7D16173B19DC89CF05ECFD14F48077A4232A7A13FCDE75E30CAC00CABE434543F1124DE&amp;password=B06A6BD4DDF1472EE78137FACEF66C3E54B8206825060612FE1AA234665BBFA540F7B41CE7968BD4F7D65B7F1F463D67FA85A3DFADB7BC83FE4323436D4FE24A5144092B56AEA63E27277F7BC24166EE258F58B75AAC2C5A10BA9B04C8C435E64B5315E4E33301F0754DDFF4EC83A0E7FAA74165415518B755C366E53DE4A9E9&amp;single=02
-【Response】
-	【status】200
-	【body】{"data":{"dzswj_tgc":"6f5d49cee02d44229f3b14c515ccf76b","ssoLoginInfo":{"loginType":"up","nsrInfoList":[{"createTime":"2017-08-02 03:06:29.0","djrq":"2016-07-02 00:00:00.0","djxh":"10211303000016807777","djzclxDm":"411","fddbrxm":"乐思琦","fddbrxmzjhm":"330100194704074447","fddbrxmzjlx":"201","fundType":"0","gdglBz":"N","gsNsrmc":"LESQ杭州专用测试税号_请勿修改谢谢","gsNsrztDm":"03","gsSwhzdjrq":"2016-07-02","gsSwjgDm":"13301083100","gsZgyswryDm":"13301080004","hyDm":"5299","isDljg":"0","nsrsbhGs":"330100222444777","roleId":5,"roleName":"法人-普通纳税人","scjydz":"秦皇岛市海港区河北大街141号（项好电子城三楼369号）","scjydzxzqk":"130300","sjly":"1","sqbz":"1","swdjzfzrq":"1900-01-01","zcdxzqh":"130300","zcdz":"秦皇岛市海港区河北大街141号（项好电子城三楼369号）","zczb":"0.00","zzsnsrlx":"1","zzsqylx":"2"}],"userID":"382","userInfo":{"activated":"false","address":"无","addressMap":{"address1":"无"},"cardNo":"234234234234234234","createTime":"2017-07-28 06:38:19","fullName":"乐思琦","id":"382","identityCardNo":"330100194704074447","isDlr":"0","lastModified":"2017-07-28 06:38:19","loginName":"330100194704074447","mobile":"13112331233","nameInitial":"l","roleId":1,"smrzZt":"0","source":"07670100010000"},"userType":"02"},"loginstate":""},"paramList":[],"success":true} $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.4')">
-        <div id="logdiv_pt1.4" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.4" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/login
 	【header】{&quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;}
-	【body】username=682012C8BA17D6048BEE1BED82AA8EEB0FA2D704D48A12DB0B4389D65A716301DD8966A7B7CC6363B334D906A10B0575AD7DCBB7656B8B28AFA0C29DCE6B8984EEFC2EFF1A03D283CC704B43FADE9B6FE278D8A2EA7B7DD65FFF9087C7D16173B19DC89CF05ECFD14F48077A4232A7A13FCDE75E30CAC00CABE434543F1124DE&amp;password=B06A6BD4DDF1472EE78137FACEF66C3E54B8206825060612FE1AA234665BBFA540F7B41CE7968BD4F7D65B7F1F463D67FA85A3DFADB7BC83FE4323436D4FE24A5144092B56AEA63E27277F7BC24166EE258F58B75AAC2C5A10BA9B04C8C435E64B5315E4E33301F0754DDFF4EC83A0E7FAA74165415518B755C366E53DE4A9E9&amp;single=02
+	【body】username=AE93CD397BF23F9425ACFEE2A89889645AE7159F64163C76E4D71A0FFD8233FA4E107AA39C7BFE4C6FAFA9954B0A13DFF4729B534B46916E4AB979648D019AE4ACDFBC154053A4AAF70A1555AD67D2A5C160D82409031F267A4FD5446CC9DDC32CD2514E8AE1DA66331A3695CF5F49C6D35D56DBEE97ECA001A9C42F88FEE751&amp;password=66B50C9D4666C6A12182E56E3EF5F7D2EAE03DF73264610CEE47FADFA889C2048D4C21B5A7441B1C0D8B1010B027B7831F7EBF63E7CF0889066CE2ADD1D58DD04A9550B202D27F81F1957C49933405A63011873A5AB12D180874BB2DD08A10AB0810E8BA1288EBB63F0CC2011A0D4262EF43D5847499176110012C146CD3CDDE&amp;single=02
 【Response】
 	【status】200
-	【body】{&quot;data&quot;:{&quot;dzswj_tgc&quot;:&quot;6f5d49cee02d44229f3b14c515ccf76b&quot;,&quot;ssoLoginInfo&quot;:{&quot;loginType&quot;:&quot;up&quot;,&quot;nsrInfoList&quot;:[{&quot;createTime&quot;:&quot;2017-08-02 03:06:29.0&quot;,&quot;djrq&quot;:&quot;2016-07-02 00:00:00.0&quot;,&quot;djxh&quot;:&quot;10211303000016807777&quot;,&quot;djzclxDm&quot;:&quot;411&quot;,&quot;fddbrxm&quot;:&quot;乐思琦&quot;,&quot;fddbrxmzjhm&quot;:&quot;330100194704074447&quot;,&quot;fddbrxmzjlx&quot;:&quot;201&quot;,&quot;fundType&quot;:&quot;0&quot;,&quot;gdglBz&quot;:&quot;N&quot;,&quot;gsNsrmc&quot;:&quot;LESQ杭州专用测试税号_请勿修改谢谢&quot;,&quot;gsNsrztDm&quot;:&quot;03&quot;,&quot;gsSwhzdjrq&quot;:&quot;2016-07-02&quot;,&quot;gsSwjgDm&quot;:&quot;13301083100&quot;,&quot;gsZgyswryDm&quot;:&quot;13301080004&quot;,&quot;hyDm&quot;:&quot;5299&quot;,&quot;isDljg&quot;:&quot;0&quot;,&quot;nsrsbhGs&quot;:&quot;330100222444777&quot;,&quot;roleId&quot;:5,&quot;roleName&quot;:&quot;法人-普通纳税人&quot;,&quot;scjydz&quot;:&quot;秦皇岛市海港区河北大街141号（项好电子城三楼369号）&quot;,&quot;scjydzxzqk&quot;:&quot;130300&quot;,&quot;sjly&quot;:&quot;1&quot;,&quot;sqbz&quot;:&quot;1&quot;,&quot;swdjzfzrq&quot;:&quot;1900-01-01&quot;,&quot;zcdxzqh&quot;:&quot;130300&quot;,&quot;zcdz&quot;:&quot;秦皇岛市海港区河北大街141号（项好电子城三楼369号）&quot;,&quot;zczb&quot;:&quot;0.00&quot;,&quot;zzsnsrlx&quot;:&quot;1&quot;,&quot;zzsqylx&quot;:&quot;2&quot;}],&quot;userID&quot;:&quot;382&quot;,&quot;userInfo&quot;:{&quot;activated&quot;:&quot;false&quot;,&quot;address&quot;:&quot;无&quot;,&quot;addressMap&quot;:{&quot;address1&quot;:&quot;无&quot;},&quot;cardNo&quot;:&quot;234234234234234234&quot;,&quot;createTime&quot;:&quot;2017-07-28 06:38:19&quot;,&quot;fullName&quot;:&quot;乐思琦&quot;,&quot;id&quot;:&quot;382&quot;,&quot;identityCardNo&quot;:&quot;330100194704074447&quot;,&quot;isDlr&quot;:&quot;0&quot;,&quot;lastModified&quot;:&quot;2017-07-28 06:38:19&quot;,&quot;loginName&quot;:&quot;330100194704074447&quot;,&quot;mobile&quot;:&quot;13112331233&quot;,&quot;nameInitial&quot;:&quot;l&quot;,&quot;roleId&quot;:1,&quot;smrzZt&quot;:&quot;0&quot;,&quot;source&quot;:&quot;07670100010000&quot;},&quot;userType&quot;:&quot;02&quot;},&quot;loginstate&quot;:&quot;&quot;},&quot;paramList&quot;:[],&quot;success&quot;:true} </pre>
+	【body】{&quot;data&quot;:{&quot;dzswj_tgc&quot;:&quot;1112770e431c4bcbaeaad006db92ef1f&quot;,&quot;ssoLoginInfo&quot;:{&quot;loginType&quot;:&quot;up&quot;,&quot;nsrInfoList&quot;:[{&quot;createTime&quot;:&quot;2017-08-02 03:06:29.0&quot;,&quot;djrq&quot;:&quot;2016-07-02 00:00:00.0&quot;,&quot;djxh&quot;:&quot;10211303000016807777&quot;,&quot;djzclxDm&quot;:&quot;411&quot;,&quot;fddbrxm&quot;:&quot;乐思琦&quot;,&quot;fddbrxmzjhm&quot;:&quot;330100194704074447&quot;,&quot;fddbrxmzjlx&quot;:&quot;201&quot;,&quot;fundType&quot;:&quot;0&quot;,&quot;gdglBz&quot;:&quot;N&quot;,&quot;gsNsrmc&quot;:&quot;LESQ杭州专用测试税号_请勿修改谢谢&quot;,&quot;gsNsrztDm&quot;:&quot;03&quot;,&quot;gsSwhzdjrq&quot;:&quot;2016-07-02&quot;,&quot;gsSwjgDm&quot;:&quot;13301083100&quot;,&quot;gsZgyswryDm&quot;:&quot;13301080004&quot;,&quot;hyDm&quot;:&quot;5299&quot;,&quot;isDljg&quot;:&quot;0&quot;,&quot;nsrsbhGs&quot;:&quot;330100222444777&quot;,&quot;roleId&quot;:5,&quot;roleName&quot;:&quot;法人-普通纳税人&quot;,&quot;scjydz&quot;:&quot;秦皇岛市海港区河北大街141号（项好电子城三楼369号）&quot;,&quot;scjydzxzqk&quot;:&quot;130300&quot;,&quot;sjly&quot;:&quot;1&quot;,&quot;sqbz&quot;:&quot;1&quot;,&quot;swdjzfzrq&quot;:&quot;1900-01-01&quot;,&quot;zcdxzqh&quot;:&quot;130300&quot;,&quot;zcdz&quot;:&quot;秦皇岛市海港区河北大街141号（项好电子城三楼369号）&quot;,&quot;zczb&quot;:&quot;0.00&quot;,&quot;zzsnsrlx&quot;:&quot;1&quot;,&quot;zzsqylx&quot;:&quot;2&quot;}],&quot;userID&quot;:&quot;382&quot;,&quot;userInfo&quot;:{&quot;activated&quot;:&quot;false&quot;,&quot;address&quot;:&quot;无&quot;,&quot;addressMap&quot;:{&quot;address1&quot;:&quot;无&quot;},&quot;cardNo&quot;:&quot;234234234234234234&quot;,&quot;createTime&quot;:&quot;2017-07-28 06:38:19&quot;,&quot;fullName&quot;:&quot;乐思琦&quot;,&quot;id&quot;:&quot;382&quot;,&quot;identityCardNo&quot;:&quot;330100194704074447&quot;,&quot;isDlr&quot;:&quot;0&quot;,&quot;lastModified&quot;:&quot;2017-07-28 06:38:19&quot;,&quot;loginName&quot;:&quot;330100194704074447&quot;,&quot;mobile&quot;:&quot;13112331233&quot;,&quot;nameInitial&quot;:&quot;l&quot;,&quot;roleId&quot;:1,&quot;smrzZt&quot;:&quot;0&quot;,&quot;source&quot;:&quot;07670100010000&quot;},&quot;userType&quot;:&quot;02&quot;},&quot;loginstate&quot;:&quot;&quot;},&quot;paramList&quot;:[],&quot;success&quot;:true} </pre>
         </div>
     </td>
 </tr>
 
 <tr id='pt1.5' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_5</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
-        pass</a>
-
-    <div id='div_pt1.5' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.5: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/auth/checkLoginState.do
-	【header】{"Cookie":"DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b"}
-	【body】None
-【Response】
-	【status】200
-	【body】{"gdglBz":"","flag":"ok","userInfo":{"id":"382","loginName":"330100194704074447","fullName":"乐思琦","nameInitial":"l","sex":null,"birthday":null,"identityCardNo":"MzMwMTAwMTk0NzA0MDc0NDQ3\r\n","qqNo":null,"accountingCertificateNo":null,"locationCode":null,"locationName":null,"mobile":"MTMxMTIzMzEyMzM=\r\n","mobileVerifyFlag":null,"email":null,"emailVerifyFlag":null,"phone":null,"postCode":null,"address":"无","source":"07670100010000","imageUrl":null,"createTime":"2017-07-28 06:38:19","lastModified":"2017-07-28 06:38:19","activated":"false","available":null,"positionType":null,"cardNo":"MjM0MjM0MjM0MjM0MjM0MjM0\r\n","smrzZt":"0","isDlr":"0","djxhProxy":null,"addressMap":{"address1":"无"},"mrdzName":null,"roleId":1,"weixinOpenId1":null,"weixinOpenId2":null,"fwhgssj":null,"fwhqxgzsj":null,"loginToken":null,"zjlx":null},"nsrInfoList":[{"djxh":"10211303000016807777","nsrsbhGs":"330100222444777","gsNsrmc":"LESQ杭州专用测试税号_请勿修改谢谢","gsNsrztDm":"03","gsSwjgDm":"13301083100","gsSwhzdjrq":"2016-07-02","gsZgyswryDm":"13301080004","dsDjxh":null,"dsNsrmc":null,"nsrsbhDs":null,"dsSwjgDm":null,"dsZgyswryDm":null,"gdglBz":"N","sjly":"1","zjgBj":null,"hyDm":"5299","mxhyDm":null,"zzsnsrlx":"1","djzclxDm":"411","icRegNo":null,"icOrg":null,"isDljg":"0","shxyDm":null,"yxbz":null,"createTime":"2017-08-02 03:06:29.0","updateTime":null,"cktslx":null,"jyfw":null,"djrq":"2016-07-02 00:00:00.0","swdjzfzrq":"1900-01-01","swdjblx":null,"zzsqylx":"2","zcdz":"秦皇岛市海港区河北大街141号（项好电子城三楼369号）","zcdxzqh":"130300","zcdlxdh":null,"zcdyb":null,"scjydz":"秦皇岛市海港区河北大街141号（项好电子城三楼369号）","scjydzxzqk":"130300","scjydlxdh":null,"scjydyzbm":null,"zczb":"0.00","fddbrxm":"乐思琦","fddbrxmzjlx":"201","fddbrxmzjhm":"330100194704074447","fddbrxmgddh":null,"fddbrxmyddh":null,"fddbrxmdzxx":null,"cardNo":null,"nsrrydj":null,"nsrzgDm":null,"lxrxm":null,"lxsj":null,"lxdh":null,"lxyx":null,"cz":null,"yyzzbh":null,"dljzxkz":null,"fundType":"0","jcklx":null,"hgbm":null,"qylx":null,"cwfzrxm":null,"cwfzrzjhm":null,"cwfzrsjhm":null,"bsrxm":null,"bsrzjhm":null,"bsrsjhm":null,"isDefault":null,"roleName":"法人-普通纳税人","roleId":5,"sqbz":"1","byhBz":null}],"userType":"02"} $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.5')">
-        <div id="logdiv_pt1.5" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.5" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/auth/checkLoginState.do
-	【header】{&quot;Cookie&quot;:&quot;DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b&quot;}
+	【header】{&quot;Cookie&quot;:&quot;DZSWJ_TGC=1112770e431c4bcbaeaad006db92ef1f&quot;}
 	【body】None
 【Response】
 	【status】200
@@ -413,28 +298,32 @@ pt1.5: 【Request】
     </td>
 </tr>
 
-<tr id='pt1.6' class='hiddenRow'>
-    <td class='text text-success'><div class='testcase'>test_case_YSBQC01_6</div></td>
-    <td colspan='4' align='center'>
+<tr id='ft1.6' class='none'>
+    <td class='text text-danger'><div class='testcase'>test_case_YSBQC01_6</div></td>
+    <td colspan='3' align='center' style="position:relative;">
 
     <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
-        pass</a>
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        fail</a>
 
-    <div id='div_pt1.6' class="popup_window">
+    <div id='div_ft1.6' class="popup_window" style="position: absolute; top: 30px;width:600px; display:none;z-index:8888;">
         <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
            [x]</a>
         </div>
-        <pre>
+        <pre style="white-space: pre-wrap;">
         
-pt1.6: 【Request】
+ft1.6: 【Request】
 	【uri】http://192.168.149.135:8082/login-web/auth/hb/getByhInfo.do
-	【header】{"Content-Type":"application/x-www-form-urlencoded","Cookie":"DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b"}
+	【header】{"Content-Type":"application/x-www-form-urlencoded","Cookie":"DZSWJ_TGC=1112770e431c4bcbaeaad006db92ef1f"}
 	【body】djxh=10211303000016807777&amp;nsrsbh=330100222444777
 【Response】
 	【status】200
 	【body】{"success":true,"jylsh":null,"message":null,"messageCode":null,"paramList":[],"data":[],"total":null,"otherParams":null} $end
+Traceback (most recent call last):
+  File "E:\GitHubProject\InterfaceTest\TestCase\test_case_YSBQC01.py", line 78, in test_case_YSBQC01_6
+    self.assertIn(func.get_checkPoint("suites-test_zj_ysbqc", caseId),"666")
+AssertionError: 'success":true' not found in '666'
 
 
         </pre>
@@ -442,12 +331,13 @@ pt1.6: 【Request】
     <!--css div popup end-->
 
     </td>
+    <td></td>
     <td align = 'left'>  <!--增加log列-->
-        <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.6')">
-        <div id="logdiv_pt1.6" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_ft1.6')">
+        <div id="logdiv_ft1.6" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/auth/hb/getByhInfo.do
-	【header】{&quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;,&quot;Cookie&quot;:&quot;DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b&quot;}
+	【header】{&quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;,&quot;Cookie&quot;:&quot;DZSWJ_TGC=1112770e431c4bcbaeaad006db92ef1f&quot;}
 	【body】djxh=10211303000016807777&amp;nsrsbh=330100222444777
 【Response】
 	【status】200
@@ -458,39 +348,16 @@ pt1.6: 【Request】
 
 <tr id='pt1.7' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_7</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
-        pass</a>
-
-    <div id='div_pt1.7' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.7: 【Request】
-	【uri】http://192.168.149.135:8082/sbzx-web/api/ysbqc/queryysb
-	【header】{"Content-Type":"application/x-www-form-urlencoded","Cookie":"DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b"}
-	【body】djxh=10211303000016807777&amp;nsrsbh=330100222444777
-【Response】
-	【status】200
-	【body】{"message":null,"value":[{"sbzlDm":"10102","sbzlMc":"增值税纳税申报表（小规模申报月报）","sssqQ":"2017-10-01","sssqZ":"2017-10-31","ysbbz":"N","sbqx":"9999-12-31","nsqx":"06","zsxmDm":"10101","zspmDm":null,"yzpzzlDm":"BDA0610611","sbrq":"","jkrq":"","jkzt":"N","yxcfsb":"N","yxbz":"Y","ycxxms":null,"zsxmmc":null},{"sbzlDm":"29835","sbzlMc":"小企业会计准则-财务报表-月报","sssqQ":"2017-10-01","sssqZ":"2017-10-31","ysbbz":"N","sbqx":"9999-12-31","nsqx":"06","zsxmDm":"29800","zspmDm":null,"yzpzzlDm":"ZLA0610219","sbrq":"","jkrq":"","jkzt":"F","yxcfsb":"Y","yxbz":"Y","ycxxms":null,"zsxmmc":null}],"success":true,"msgCode":null,"resultMap":{},"msgParams":null} $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.7')">
-        <div id="logdiv_pt1.7" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.7" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/sbzx-web/api/ysbqc/queryysb
-	【header】{&quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;,&quot;Cookie&quot;:&quot;DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b&quot;}
+	【header】{&quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;,&quot;Cookie&quot;:&quot;DZSWJ_TGC=1112770e431c4bcbaeaad006db92ef1f&quot;}
 	【body】djxh=10211303000016807777&amp;nsrsbh=330100222444777
 【Response】
 	【status】200
@@ -501,169 +368,16 @@ pt1.7: 【Request】
 
 <tr id='pt1.8' class='hiddenRow'>
     <td class='text text-success'><div class='testcase'>test_case_YSBQC01_8</div></td>
-    <td colspan='4' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
-        pass</a>
-
-    <div id='div_pt1.8' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-pt1.8: 【Request】
-	【uri】http://192.168.149.135:8082/login-web/login
-	【header】{"Cookie":"DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b"}
-	【body】None
-【Response】
-	【status】200
-	【body】
-
-
-
-
-
-
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-
-&lt;head&gt;
-	&lt;meta charset="UTF-8"&gt;
-	&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
-	&lt;meta http-equiv="content-type" content="text/html; charset=UTF-8" /&gt;
-	&lt;meta name="renderer" content="webkit"&gt;
-	&lt;meta name="keywords" content="河北云厅登录"&gt;
-	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-	&lt;meta name="HBDZSWJ_SSO_LOGIN_PAGE"&gt;
-	&lt;title&gt;浙江省国家税务局新一代电子税务局&lt;/title&gt;
-	&lt;link rel="stylesheet" href="/login-web/style/normalize.css"&gt;
-	&lt;link rel="stylesheet" href="/login-web/style/login.css"&gt;
-	&lt;link rel="stylesheet" href="/login-web/style/ie-placeholder.css"&gt;
-	&lt;script type="text/javascript" src="/login-web/js/jquery/jquery.min.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/js/plugs/layer-v2.2/layer/layer.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/js/crypt/jsencrypt.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/js/crypt/base64.min.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/ssoserver/scripts/Validator.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/ssoserver/scripts/store.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/ssoserver/scripts/sso_login.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/ssoserver/scripts/login.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/login-web/ssoserver/scripts/ie-placeholder.js"&gt;&lt;/script&gt;
-
-	&lt;script type="text/javascript"&gt;
-		contextPath = "/login-web";
-	&lt;/script&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-	&lt;form id="hiddenForm" style="display:none;" action="/login-web/login" method="post"&gt;
-	    
-	&lt;/form&gt;
-	&lt;iframe name="hiddenFrame" id="hiddenFrame" style="display: none;"&gt;&lt;/iframe&gt;
-
-	&lt;div class="login-bg"&gt;&lt;/div&gt;
-	&lt;!-- &lt;div class="mask"&gt;
-		&lt;div class="mask-left"&gt;
-
-		&lt;/div&gt;
-		&lt;div class="mask-content"&gt;
-			&lt;div class="mask-first"&gt;
-			&lt;/div&gt;
-			&lt;div class="mask-second" style="display:none;"&gt;
-
-			&lt;/div&gt;
-			&lt;div class="mask-third" style="display:none;"&gt;
-
-			&lt;/div&gt;
-			&lt;div class="mask-forth" style="display:none;"&gt;
-
-			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div class="mask-right"&gt;
-
-		&lt;/div&gt;
-	&lt;/div&gt; --&gt;
-
-	&lt;!-- 授权帮助 --&gt;
-	&lt;div class="granthelp" style="display:none;" id="granthelp-content"&gt;
-		&lt;div class="granthelp-first"&gt;&lt;/div&gt;
-		&lt;div class="granthelp-second" style="display:none;"&gt;&lt;/div&gt;
-		&lt;div class="granthelp-third" style="display:none;"&gt;&lt;/div&gt;
-		&lt;div class="granthelp-forth" style="display:none;"&gt;&lt;/div&gt;
-	&lt;/div&gt;
-
-	&lt;div class="yhgl-wrap yhgl-login"&gt;
-		&lt;div class="header"&gt;
-			&lt;!-- seo引擎 --&gt;
-			&lt;h2 style="display:none"&gt;浙江省国家税务局新一代电子税务局&lt;/h2&gt;
-    &lt;div class="app2wm-content"&gt;
-        &lt;span class="ewm-scan"&gt;扫一扫下载&lt;br/&gt;电子税务局APP&lt;/span&gt;
-        &lt;img src="images/zhytApp-2wm.jpg" width="80" alt="智慧云厅手机App"/&gt;
-    &lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div class="content"&gt;
-			&lt;div class="fr clearfix box"&gt;
-				&lt;div class="login-box"&gt;
-					&lt;h3 class="font-color6"&gt;欢迎使用电子税务局&lt;/h3&gt;
-					&lt;form id="upLoginForm" action="/login-web/login" method="post" target="hiddenFrame"&gt;
-						&lt;input type="hidden" name="lt" value="LT-3330-CEeQDHDVF09rX4DQKWNh-hzdzswj" /&gt;
-			            &lt;input type="hidden" name="execution" value="25851386-1227-41f2-bd7f-2e007cd76b9f_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuUlhOb1dITTROVWRKUlRGWVNHUTRhRWcyU205UVJIaEplVkI0YkhOakwxSkJaVTQ0VVZkNU0wUkJSell6Y1M5M2JFSTBlSGR3UzBNM1VHOXdkWGN4T1dkVlowWmhWVEl4TDB0UVlVcHFVV1ZaUmpjd2JqRklkMmRTYzB3NWNVZEJZVzlEUVdKaFJYZEJVMVJpVjA5UVJrTlZiR3R3WXpGS1kyUjNhWEZOTm1KTmRGZEVRa2x5TmxOMmVtdExVVlExT1ZCaUx6Tndabk5YVEZoNGJuRnhVRlV2YVROamF5dFpLMUozVGpaU2FFbGlaME5uVXpSTU1HcFBhVFEzYkdwR2N6Uk5NRTVKVTJSVFYwbHFSMDVsVlZKWkt6WlFiblp2ZEVkQlMwTnViRU5MTURJd2NYUmpWREJ0ZFUxMlQwMHJXRVF4UTNwa2VITkpVMDV5TlU5b1J6QjRZall2TVhCMFQwSnNORE5TWW04elduazJUM0UwY3k4eE9IQjVRMDkyVEZkVU9ISkVieTltVjNsNE1rOUhOV3AyUW1aa04xWXhRMlV6ZFZka2FtVnRlRlpwYURWNVpqVkNhalp2WmpGaVFtcEhNRUUyY0ROWmFrMTBkVmhzVEVsVE1pczFiekpSYURJdmMxbHlMME5PWm5oNVFUbE5WRGQ0TldsRlRXdHRlSGhPZVRWaU5UY3paa2hwWldwR2JtMUNXa2ROU2tsUFJIbzNVRmx5U210SmFHSTNkbWs0YjJKNWJqZE1hMHBWUVROek5qaDRUMGxDTUVoNWFrdE1RemhHZGk5eWNHMURNV2h2Vm5wM2FtWjZORTloZFhrNFJTOWpXRlJoT0RCWGFuZGphWFZXUTNoMGRraGlTREV4VW1SWk9FdFllWEJWUVhJd1pHaHhkVE5tYlRCcGNqQkRTa1E0TDJ4NFVUTXZVRGxMVWlzck9IVXhSRk50UlhOemRUWjJRV1pRWWsxd1FtTldZbHB1ZUVKMU1sQkdkblJoWlZGNFZFOWhXRGhEVlZrMFVIbFRWV2d2YlV0c1NsazRRVWN4ZFVoblYzVkRVMWQyWWxSRmRGUTJWSFpUYVZCb1pYWTFRemRxWm5ab1MyOUtWM0ZuT0VOUFVrRjFOaTlJWjBOek9XMUdZM0I0VkVWR2JIaFdNREJ4WlhwbVFXVkJZVkJNZWs1NGMzWnBNVGxxYUUwMU1Wb3JXR3hQVGtoVVV6TXphRzFEU0VaYU0ydDRiR3QwTWt4dmFEVTRWWG92UjJ4NllrRldNMFZIYlRrck5EaDBNa1lyT0ROVE9EWkxUblJ4TWpCUk5VVTRiVWRSU1VkSVQyTkxkRGQ0Y1ZoaldWWnJhMFZMT1V4TFIyRnBhV3BwWnpnell6ZGphM2Q2UVhwa1kyNTNTVE5yVW5GcVkwTTRXbGt2TjNWTmRVMWpNM0pOTVRkVFRtWlNXalExVW5GUGRFNXhZVmRGV1hWSmFHSnRWMGhxVDBoakszZEZZV0U0TjBoTmNrZDNkbEozUVZseU1sTXJTRkZrYnpFeVJFbEdRemxQU1RGQ2VIcHFjamhsUmxWbVVGVlJNMHcxYUVVNVVXdHRRMlprVEV0eVRsSnFWM1owYVc5WlNGYzBVblZUYms1MFR6bENMekJhTjNGc1YyWlBTMWxwUjNOc1dVVkRZa0pSZEdSMmFWUmlNVEpMVlZWbmFuWlljRWdyTldOVVZsSmpORmhOUWxGYWFrTXdhRWQzWjNoc1IzcE5VVGhUWlZWdlZ6aHZjVWxhYkdkT05FNDNOVGxHUkdFNVJYZG5SV28xWWtrelR6RkVOa05GVDNod1FtMW9OMHAwVFd0bVJrbDFVMFlyZUhCT1FVOUpTVkkwYm5oWVIwSjNiV0p1TVRGV2RYbHNjQ3RJVDNGalQyRkNkM1JVZWxoUmJrVlJORmhpYVVkQlpXaFphVnBEVW1WVlpVcDVOVTlpYzFWbGVraG5WemR0Y1RONU5GcE5VV2h3UzJFeFVtOUJQUS5tOV9kRWU3WVk2WE96TzFtallGNkVjSy1aaVg0ZXZtZU9kWm9VTFNVUlBMVlNGNHAzbkJfdk5PTktkSVpBNU5Kc0M2aDQ2TjR3NjVaVFBOSk83TmJNUQ==" /&gt;
-			            &lt;input type="hidden" name="_eventId" value="submit" /&gt;
-			            &lt;input type="hidden" name="authencationHandler" value="UsernamePasswordAuthencationHandler" /&gt;
-
-						&lt;input type="text" placeholder="请输入身份证号" class="block" id="userName" name="userName" /&gt;
-						&lt;input type="password" placeholder="请输入密码" class="block" id="passWord" name="passWord" /&gt;
-						&lt;input type="text" id="captchCode" name="captchCode" placeholder="验证码" style="width: 168px;float:left"&gt;
-						&lt;img id="yzmImg" onclick="refreshYzm();" class="qrcode" src="" alt=""&gt;
-						&lt;input type="button" value="登录" class="fl button button-blue login-btn" id="login" /&gt;
-						&lt;a href="#" id="register" class="fr button button-grey reg-btn"&gt;实名注册&lt;/a&gt;
-					&lt;/form&gt;
-					&lt;div class="clearfix help"&gt;
-						&lt;a href="#" id="forgetPassword" class="fl"&gt;忘记密码？&lt;/a&gt; 
-						&lt;a href="#" id="help" class="fr"&gt;登录帮助&lt;/a&gt;
-					&lt;/div&gt;
-					&lt;div class="fl" style="padding-top:10px;"&gt;
-						&lt;a target="_blank" href="yklogin.html" style="color: #3185a9; font-size: 14px;"&gt;游客登录&lt;/a&gt;
-						&lt;a target="_blank" href="/download/帮助手册.docx" style="color: #3185a9;font-size: 14px;padding-left: 183px;;"&gt;使用手册&lt;/a&gt;
-					&lt;/div&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div class="footer"&gt;
-			&lt;ul&gt;
-				&lt;li&gt;&lt;a href="#"&gt;公示公告&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href="#"&gt;关于我们&lt;/a&gt;&lt;/li&gt;
-				&lt;!--&lt;li&gt;&lt;span class="cnzz"&gt;&lt;/span&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;span&gt;&lt;a href="javascript:void(0);"&gt;总受理量[&lt;span id="tjsll"&gt;&lt;/span&gt;]&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;--&gt;
-				&lt;li&gt;
-					&lt;script type="text/javascript"&gt;
-						var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-						document.write(unescape("%3Cspan id='cnzz_stat_icon_1261635656'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1261635656%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-					&lt;/script&gt;
-				&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-
-&lt;/body&gt;
-
-&lt;/html&gt;
- $end
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='3' align='center'>pass</td>
+    <td colspan='1' align='center'>
 
     </td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_pt1.8')">
-        <div id="logdiv_pt1.8" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_pt1.8" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">【Request】
 	【uri】http://192.168.149.135:8082/login-web/login
-	【header】{&quot;Cookie&quot;:&quot;DZSWJ_TGC=6f5d49cee02d44229f3b14c515ccf76b&quot;}
+	【header】{&quot;Cookie&quot;:&quot;DZSWJ_TGC=1112770e431c4bcbaeaad006db92ef1f&quot;}
 	【body】None
 【Response】
 	【status】200
@@ -755,8 +469,8 @@ pt1.8: 【Request】
 				&lt;div class=&quot;login-box&quot;&gt;
 					&lt;h3 class=&quot;font-color6&quot;&gt;欢迎使用电子税务局&lt;/h3&gt;
 					&lt;form id=&quot;upLoginForm&quot; action=&quot;/login-web/login&quot; method=&quot;post&quot; target=&quot;hiddenFrame&quot;&gt;
-						&lt;input type=&quot;hidden&quot; name=&quot;lt&quot; value=&quot;LT-3330-CEeQDHDVF09rX4DQKWNh-hzdzswj&quot; /&gt;
-			            &lt;input type=&quot;hidden&quot; name=&quot;execution&quot; value=&quot;25851386-1227-41f2-bd7f-2e007cd76b9f_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuUlhOb1dITTROVWRKUlRGWVNHUTRhRWcyU205UVJIaEplVkI0YkhOakwxSkJaVTQ0VVZkNU0wUkJSell6Y1M5M2JFSTBlSGR3UzBNM1VHOXdkWGN4T1dkVlowWmhWVEl4TDB0UVlVcHFVV1ZaUmpjd2JqRklkMmRTYzB3NWNVZEJZVzlEUVdKaFJYZEJVMVJpVjA5UVJrTlZiR3R3WXpGS1kyUjNhWEZOTm1KTmRGZEVRa2x5TmxOMmVtdExVVlExT1ZCaUx6Tndabk5YVEZoNGJuRnhVRlV2YVROamF5dFpLMUozVGpaU2FFbGlaME5uVXpSTU1HcFBhVFEzYkdwR2N6Uk5NRTVKVTJSVFYwbHFSMDVsVlZKWkt6WlFiblp2ZEVkQlMwTnViRU5MTURJd2NYUmpWREJ0ZFUxMlQwMHJXRVF4UTNwa2VITkpVMDV5TlU5b1J6QjRZall2TVhCMFQwSnNORE5TWW04elduazJUM0UwY3k4eE9IQjVRMDkyVEZkVU9ISkVieTltVjNsNE1rOUhOV3AyUW1aa04xWXhRMlV6ZFZka2FtVnRlRlpwYURWNVpqVkNhalp2WmpGaVFtcEhNRUUyY0ROWmFrMTBkVmhzVEVsVE1pczFiekpSYURJdmMxbHlMME5PWm5oNVFUbE5WRGQ0TldsRlRXdHRlSGhPZVRWaU5UY3paa2hwWldwR2JtMUNXa2ROU2tsUFJIbzNVRmx5U210SmFHSTNkbWs0YjJKNWJqZE1hMHBWUVROek5qaDRUMGxDTUVoNWFrdE1RemhHZGk5eWNHMURNV2h2Vm5wM2FtWjZORTloZFhrNFJTOWpXRlJoT0RCWGFuZGphWFZXUTNoMGRraGlTREV4VW1SWk9FdFllWEJWUVhJd1pHaHhkVE5tYlRCcGNqQkRTa1E0TDJ4NFVUTXZVRGxMVWlzck9IVXhSRk50UlhOemRUWjJRV1pRWWsxd1FtTldZbHB1ZUVKMU1sQkdkblJoWlZGNFZFOWhXRGhEVlZrMFVIbFRWV2d2YlV0c1NsazRRVWN4ZFVoblYzVkRVMWQyWWxSRmRGUTJWSFpUYVZCb1pYWTFRemRxWm5ab1MyOUtWM0ZuT0VOUFVrRjFOaTlJWjBOek9XMUdZM0I0VkVWR2JIaFdNREJ4WlhwbVFXVkJZVkJNZWs1NGMzWnBNVGxxYUUwMU1Wb3JXR3hQVGtoVVV6TXphRzFEU0VaYU0ydDRiR3QwTWt4dmFEVTRWWG92UjJ4NllrRldNMFZIYlRrck5EaDBNa1lyT0ROVE9EWkxUblJ4TWpCUk5VVTRiVWRSU1VkSVQyTkxkRGQ0Y1ZoaldWWnJhMFZMT1V4TFIyRnBhV3BwWnpnell6ZGphM2Q2UVhwa1kyNTNTVE5yVW5GcVkwTTRXbGt2TjNWTmRVMWpNM0pOTVRkVFRtWlNXalExVW5GUGRFNXhZVmRGV1hWSmFHSnRWMGhxVDBoakszZEZZV0U0TjBoTmNrZDNkbEozUVZseU1sTXJTRkZrYnpFeVJFbEdRemxQU1RGQ2VIcHFjamhsUmxWbVVGVlJNMHcxYUVVNVVXdHRRMlprVEV0eVRsSnFWM1owYVc5WlNGYzBVblZUYms1MFR6bENMekJhTjNGc1YyWlBTMWxwUjNOc1dVVkRZa0pSZEdSMmFWUmlNVEpMVlZWbmFuWlljRWdyTldOVVZsSmpORmhOUWxGYWFrTXdhRWQzWjNoc1IzcE5VVGhUWlZWdlZ6aHZjVWxhYkdkT05FNDNOVGxHUkdFNVJYZG5SV28xWWtrelR6RkVOa05GVDNod1FtMW9OMHAwVFd0bVJrbDFVMFlyZUhCT1FVOUpTVkkwYm5oWVIwSjNiV0p1TVRGV2RYbHNjQ3RJVDNGalQyRkNkM1JVZWxoUmJrVlJORmhpYVVkQlpXaFphVnBEVW1WVlpVcDVOVTlpYzFWbGVraG5WemR0Y1RONU5GcE5VV2h3UzJFeFVtOUJQUS5tOV9kRWU3WVk2WE96TzFtallGNkVjSy1aaVg0ZXZtZU9kWm9VTFNVUlBMVlNGNHAzbkJfdk5PTktkSVpBNU5Kc0M2aDQ2TjR3NjVaVFBOSk83TmJNUQ==&quot; /&gt;
+						&lt;input type=&quot;hidden&quot; name=&quot;lt&quot; value=&quot;LT-3394-zRzgWdBPUChjAQrKGOPz-hzdzswj&quot; /&gt;
+			            &lt;input type=&quot;hidden&quot; name=&quot;execution&quot; value=&quot;d3c498bc-0cdb-49be-a28d-bd495389abb4_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuU0VWa1ZITTROV0kyWW5OWVUyMTJSVkZRTW1SdkwyRlNNekZOY0hCS2R6ZDViVFJDZEVkdEwwaHFNM0ZSUWsxVlVHVXdRemMyVVVjd05VeGFSMGQzZUVKbU9UVnVaWGx6UlVRMmVWaHBSV05TVFZsREwyTnpUak5LYkVoS1VXbGFXbmxPY3pWR1FsbEtOamQxYlZkRFUwcEJOVXR2Wmt4VlluUk1iMUYxZEhFeFptUkxPWGxNTTJwdFUyOUZVV0pXUlZGNmJXVnVPVFZ5YmpkVk9WZ3lXbXRRUmtOS1dVZ3dhWGQyYUVGVmVFVktWMkZRZG5KYWNYZFZlalpSUmpWd1dXazBPRGR0U0ZCMVdXZEpWM1ZNVFd0b1kzTTROblF6WldGamNFUTNVRlpOUkVOUVRqRm9SMlZtVUVoUVdGVXZUbEphSzNwWlNrdFpkV2MzYUZkWk1VdzBWWGQyTlhSV1R6TTVVVUl4WkVZMmNpOXZjMDAwYURacVJWVXlXVlJSTUV0eFdHeDRVRkJYYlhkVFZHaDJOa2g0YmxOUlEyc3diVTlWTmxwQlNURlNkVlJWY1hWSVp6WTJRMnB2YmxCRmVWQnNXU3QwUW14aE5HRktSbGR0VlV0elNVcDRPU3RYYlVKdVJIaE5SM2QzWkdkSE5qbG9lRE55U0dOQ1pWZzJhSFp5UzBORlN6QkhOV1IxZVV4SWRFRjFSM0p6T0VzeWR6WlNiVVZCTjB0UWIyY3pXVUZyTDIwd056WnVZMmxXWm1WVFJXVmhOVmxNT0VKV2NDOTJZbEZ4YUZOTlVWQnRSWFkxUms5Tk9WVkNkMGh0ZG5RNVdrMVhUbG96VTBNd2VuSjBja2RhV2twVWREYzRkazFZU0cxdU9FaENRbk5OUWpZeGJIVlJNR2RsVkRkQlVEWlBUR05tTVhFemNFaHpaemxXYVZaalZtMWhhRU5STmtOU1lVVTJha0pyTjA5c1VrdHNVSHBUTmpOdmVtcEhhbkpGY2pORVdUTk9TMlpIY1hsdVlUUm1RelJuV1RGbVVVa3paSFZGYTJKRFMyVXliV3RJTkRGM1ZsQnBla1ozZDJGbE5FMXhXVlJDUmpscWRFYzFNVkpMYkVzMFJteEVPVGRYYjNOWlMwVk5iRU56TVhoUFZtSlJXRmszUldoaFRGcHRlbkU0YjBseU1uWmhNbkUxTDBSelVtZHBNbmRUTVZCVUsxTnpOVTFFZDNod1REVnZjREZ6U1dGT1pTdENTR1JsZUhSNU1WSkJhbGhSVHpOdlZXcHdNelJXVEc4clVsaExUQzgyVnpkT1UxbG9ibXBUWWxkRlVWbDBVRkJIUzJkVmJsTmlXVU5OZFRGMlJDOTRWa2Q0TTBwTFpGZHJUamg2U1U1MlZYcFFabXRNVlZGSFEySXhNMDlCY0cxTFkyeHNaR05JV1dkb1MzcEhPQ3RHTms0NGJUWjFZbGhXY0ROSVZtTmxRMlp4ZWtoSlNWUk1hMU51WW1KNVpucFNUUzlITTJnek9GSlNTSFVyWW1ORFFrZEpWemx5WTJWbFdYQnBLMjlsYkhoalRIQlFVM0pTZVd0V1YyZFdNREpaZG01M2RFbE1SR0pyZFZGNFZIWlJaR3hhVGpoTmFVVkxUV0kyVXpnd1ZtbHlTRW8xZFRsU2MwbE9RakJrY2pkamRrWkdkbUlyVURsWFdWTTVVV2h0VVdsd1VIUmhabUZDVWpaSlVWQnBiRTFST0ZsVFVUQjBRM1l6UjFwblp6a3daVGt5VUVRd2R6RmpjMDlQY0c5UE0yMW5ZWFZIWmxFeWVGUm9ObGRqYVV0RGFYSnJWVzEwWkd0R1JISkJZMnBzUTB4NE1ESlFkMlJJWkdFM1VEaFNOVWcwTVdWRUt6TXhaM055Y2psaVZVSlhaMlpIZG5NMWFsQm5ORFpJYTFWNE1rWkdheXRrU1ZSa2J6SjRNRTVQYUcxQ1FsWjZaalJsY200M1NEUjZVemRETURaMVkyOWpQUS41N1RlaVRFaVQtR2dBNGdrYlVvX3F1Z3A0MDFhMHBYa0dleGFjYWxYVHJLc1ZlM0NmcHRmMUsyU3o4WDVINlpyUkVFYzRVdGQ0NzhRTVlRYjk3a0YtZw==&quot; /&gt;
 			            &lt;input type=&quot;hidden&quot; name=&quot;_eventId&quot; value=&quot;submit&quot; /&gt;
 			            &lt;input type=&quot;hidden&quot; name=&quot;authencationHandler&quot; value=&quot;UsernamePasswordAuthencationHandler&quot; /&gt;
 
@@ -807,8 +521,8 @@ pt1.8: 【Request】
         <tr id='total_row'>
             <td>Total</td>
             <td>8</td>
-            <td class="text text-success">8</td>
-            <td class="text text-danger">0</td>
+            <td class="text text-success">7</td>
+            <td class="text text-danger">1</td>
             <td class="text text-warning">0</td>
             <td>&nbsp;</td>
             <td></td>

@@ -453,27 +453,28 @@ function showOutput(id, name) {
     REPORT_TEST_WITH_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
-    <td colspan='4' align='center'>
+    <td colspan='3' align='center' style="position:relative;">
 
     <!--css div popup start-->
     <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_%(tid)s')" >
         %(status)s</a>
 
-    <div id='div_%(tid)s' class="popup_window">
+    <div id='div_%(tid)s' class="popup_window" style="position: absolute; top: 30px;width:600px; display:none;z-index:8888;">
         <div style='text-align: right;cursor:pointer'>
         <a onfocus='this.blur();' onclick="document.getElementById('div_%(tid)s').style.display = 'none' " >
            [x]</a>
         </div>
-        <pre>
+        <pre style="white-space: pre-wrap;">
         %(script)s
         </pre>
     </div>
     <!--css div popup end-->
 
     </td>
+    <td></td>
     <td align = 'left'>  <!--增加log列-->
         <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_%(tid)s')">
-        <div id="logdiv_%(tid)s" style="position: absolute; right: 120px;width:1000px; display:none; inline">
+        <div id="logdiv_%(tid)s" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
             <pre style="white-space: pre-wrap;">%(log)s</pre>
         </div>
     </td>
@@ -485,25 +486,15 @@ function showOutput(id, name) {
 <tr id='%(tid)s' class='%(Class)s'>
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='3' align='center'>%(status)s</td>
-    <td colspan='2' align='center'>
-
-    <!--css div popup start-->
-    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_%(tid)s')" >
-        %(status)s</a>
-
-    <div id='div_%(tid)s' class="popup_window">
-        <div style='text-align: right;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_%(tid)s').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        %(script)s
-        </pre>
-    </div>
-    <!--css div popup end-->
+    <td colspan='1' align='center'>
 
     </td>
-    <td></td>
+    <td align = 'left'>  <!--增加log列-->
+        <input type='button' value="显示/隐藏" onclick="displayDiv('logdiv_%(tid)s')">
+        <div id="logdiv_%(tid)s" style="position: absolute; right: 120px;width:1000px; display:none; z-index:9999;">
+            <pre style="white-space: pre-wrap;">%(log)s</pre>
+        </div>
+    </td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
 
@@ -778,7 +769,7 @@ class BSTestRunner(Template_mixin):
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
-        tmpl = has_output and self.REPORT_TEST_WITH_OUTPUT_TMPL or self.REPORT_TEST_NO_OUTPUT_TMPL
+        tmpl = (has_output&n!=0) and self.REPORT_TEST_WITH_OUTPUT_TMPL or self.REPORT_TEST_NO_OUTPUT_TMPL
         #logging.info(e)
         # o and e should be byte string because they are collected from stdout and stderr?
         if isinstance(o,str):
@@ -802,7 +793,6 @@ class BSTestRunner(Template_mixin):
         caselog = saxutils.escape(uo + ue)
         print("caselog is %s" % caselog)
         log = caselog[caselog.find("【Request】"):caselog.find("$end")].replace('"', '&quot;')
-        print("log is :%s" % log)
         row = tmpl % dict(
             tid = tid,
             Class = (n == 0 and 'hiddenRow' or 'none'),
